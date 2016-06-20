@@ -1,0 +1,12 @@
+/*companyLogo*/
+.companyLogo{
+    background-color: red;
+    padding: 20px;
+    text-align: center;
+}
+#helpButton{
+    margin-top: 25px;
+}
+.noMarginBottom{
+    margin-bottom: 0 !important;
+}
