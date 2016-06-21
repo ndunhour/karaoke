@@ -8,7 +8,7 @@ if (Meteor.isClient){
         }
         // console.log("results", result);
         Session.set("songs", result);
-
     });
+
 }
 

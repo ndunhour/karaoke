@@ -13,6 +13,6 @@ Template.searchFields.helpers({
 
 Template.searchFields.events({
     'click .js-searchBtn': function(event, template){
-
+        Router.go('/resultExp');
     }
 });
