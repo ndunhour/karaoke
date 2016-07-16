@@ -1,4 +1,3 @@
-
 Template.searchFields.created = function(){
 };
 

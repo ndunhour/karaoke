@@ -1,0 +1,26 @@
+body, html{
+    background-color: gray;
+}
+.wrapper{
+}
+.container{
+    height: 800px;
+    width: 100%;
+    background-color: #ccf2ff;
+}
+.divUp{
+    margin-top: 20px;
+}
+.divDown{
+    margin-bottom: 20px;
+}
+textarea{
+    width: 100%;
+    padding: 10px;
+}
+input{
+    padding: 10px;
+}
+.row{
+    margin-bottom: 15px;
+}
