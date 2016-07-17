@@ -3,8 +3,18 @@ Router.configure({
 });
 
 Router.route('home', {
-    path: '/home',
-    template: 'home'
+    path: '/',
+    template: 'home',
+    waitOn: function(){
+        return [
+            Meteor.subscribe('songs'),
+            // Meteor.subscribe('searchFor', searchFor)
+        ];
+    },
+    data: function(){
+        return Songs.find({});
+    }
+
 });
 
 Router.route('signIn', {

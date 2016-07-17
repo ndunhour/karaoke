@@ -5,13 +5,21 @@ Template.searchFields.rendered = function(){
 };
 
 Template.searchFields.helpers({
-    songs: function(){
-        return Session.get('songs');
+    songList: function(){
+        return Songs.find({}).fetch();
+    },
+    find: function(){
+        var search = Session.get("search");
+        return Songs.find({$or: [{Title: {$eq: search}}, {Artist: {$eq: search}}]});
     }
 });
 
 Template.searchFields.events({
     'click .js-searchBtn': function(event, template){
-        Router.go('/resultExp');
+        var searchFor = $('.searchBox').val();
+        Session.set('search', searchFor);
+    },
+    'click .clickable': function(event, template){
+        var row = $(this).closest('tr').children('td');
     }
 });
