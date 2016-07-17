@@ -12,7 +12,8 @@
             <button class="btn btn-success js-searchBtn">SEARCH</button>
         </div>
     </div>
-        <table>
+    <div class='available' style='display:inline'>
+        <table >
             <tr>
                 <th>ID</th>
                 <th>Artist</th>
@@ -26,14 +27,24 @@
                 <td>{{Title}}</td>
             </tr>
             {{/each}}
+
+
         </table>
-
-        {{#each find}}
-            <div style="background-color: red; border-bottom: 1px black solid;">
-                    {{ID}}
-                    {{Artist}}
-                    {{Title}}
-            </div>
-        {{/each}}
-
+    </div>
+    <div class='found' style='display:none'>
+        <table >
+            <tr>
+                <th>ID</th>
+                <th>Artist</th>
+                <th>Title</th>
+            </tr>
+            {{#each find}}
+            <tr class='clickable' id='{{_id}}' >
+                <td>{{ID}}</td>
+                <td>{{Artist}}</td>
+                <td>{{Title}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
 </template>
