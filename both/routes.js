@@ -8,7 +8,6 @@ Router.route('home', {
     waitOn: function(){
         return [
             Meteor.subscribe('songs'),
-            // Meteor.subscribe('sort')
         ];
     },
     data: function(){
@@ -36,4 +35,3 @@ Router.route('resultExp', {
     //     return Songs.find({}, {sort: {createdAt: -1}});
     // }
 });
-
