@@ -12,15 +12,14 @@ Template.searchField.helpers({
         var search = Session.get("search");
         return Songs.find({$or: [{Title: {$eq: search}}, {Artist: {$eq: search}}]}, {sort: {Title: 1}});
     },
-    songTitle: function(){
-        return Songs.find({}, {sort:{Title:1}});
-    },
-    sortArtist: function(){
-        return Songs.find({}, {sort: {Artist: 1}});
-    },
-    showSortTitle: function(){
-        console.log('show', Template.instance().showSortTitle.get());
-        return Template.instance().showSortTitle.get();
+    settings: function(){
+        return {
+            collection:Songs.find({}),
+            fields:['ID', 'Title', 'Artist'],
+            showNavigation: 'always',
+            rowsPerPage: 10,
+
+        }
     }
 });
 

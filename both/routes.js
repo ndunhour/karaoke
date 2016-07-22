@@ -4,7 +4,7 @@ Router.configure({
 
 Router.route('home', {
     path: '/',
-    template: 'sortTitle',
+    template: 'searchField',
     waitOn: function(){
         return [
             Meteor.subscribe('songs'),
@@ -13,20 +13,6 @@ Router.route('home', {
     },
     data: function(){
         return Songs.find({});
-    }
-});
-Router.route('sortTitle', {
-    path: '/sortTitle',
-    template: 'sortTitle',
-    waitOn: function(){
-        return Meteor.subscribe('songs');
-    }
-});
-Router.route('sortArtist', {
-    path: '/sortArtist',
-    template: 'sortArtist',
-    waitOn: function(){
-        return Meteor.subscribe('songs');
     }
 });
 Router.route('signIn', {
