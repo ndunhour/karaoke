@@ -4,19 +4,31 @@ Router.configure({
 
 Router.route('home', {
     path: '/',
-    template: 'home',
+    template: 'sortTitle',
     waitOn: function(){
         return [
             Meteor.subscribe('songs'),
-            // Meteor.subscribe('searchFor', searchFor)
+            // Meteor.subscribe('sort')
         ];
     },
     data: function(){
         return Songs.find({});
     }
-
 });
-
+Router.route('sortTitle', {
+    path: '/sortTitle',
+    template: 'sortTitle',
+    waitOn: function(){
+        return Meteor.subscribe('songs');
+    }
+});
+Router.route('sortArtist', {
+    path: '/sortArtist',
+    template: 'sortArtist',
+    waitOn: function(){
+        return Meteor.subscribe('songs');
+    }
+});
 Router.route('signIn', {
     path: '/signIn',
     template: 'signIn',

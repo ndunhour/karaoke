@@ -56,6 +56,7 @@ modules@0.6.3
 modules-runtime@0.6.4
 mongo@1.1.9
 mongo-id@1.0.5
+mrt:jquery-ui@1.9.2
 npm-container@1.2.0
 npm-mongo@1.4.44
 observe-sequence@1.0.12

@@ -2,8 +2,6 @@
 Meteor.publish('songs', function(){
     return Songs.find({});
 });
-if(Meteor.isServer){
-    Meteor.publish('searchFor', function(){
-        return Songs.find({$or: [{Title: {$eq: search}}, {Artist: {$eq: search}}]});
-    });
-}
+// Meteor.publish('sort', function(){
+//     return Songs.find({},{sort: {Artist: 1}});
+// });

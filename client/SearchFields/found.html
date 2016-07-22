@@ -1,0 +1,19 @@
+<template name="found">
+    <div class='found'>
+        <table >
+            <tr>
+                <th>ID</th>
+                <th class="sortArtist">Artist</th>
+                <th class="sortTitle">Title</th>
+            </tr>
+            {{#each find}}
+            <tr class='clickable' id='{{_id}}' >
+                <td>{{ID}}</td>
+                <td>{{Artist}}</td>
+                <td>{{Title}}</td>
+            </tr>
+            {{/each}}
+        </table>
+
+    </div>
+</template>

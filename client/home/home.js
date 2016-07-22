@@ -1,5 +1,4 @@
 Template.home.created = function(){
-
 };
 
 Template.home.rendered = function(){

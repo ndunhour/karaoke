@@ -1,0 +1,36 @@
+<template name="searchField">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Search Songs</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-9 col-sm-9 col-md-9">
+            <input type="text" class="searchBox" placeholder="Search by Artist or Song Title">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3">
+            <button class="btn btn-success js-searchBtn">SEARCH</button>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class='search' style="display:none">
+            <table >
+                <tr>
+                    <th>ID</th>
+                    <th class="sortTitle">Title</th>
+                    <th class="sortArtist">Artist</th>
+                </tr>
+                {{#each find}}
+                <tr class='clickable' id='{{_id}}' >
+                    <td>{{ID}}</td>
+                    <td>{{Title}}</td>
+                    <td>{{Artist}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+    {{> songTitle}}
+</template>
