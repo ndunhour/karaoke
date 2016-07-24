@@ -27,6 +27,10 @@ Template.searchField.events({
                 console.log(err);
             }
         })
+        var songId = request.ID;
+        console.log(songId);
+        console.log('songID', Songs.findOne({ID: 6826}));
+
     }
 
 });
