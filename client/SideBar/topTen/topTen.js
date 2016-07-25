@@ -5,6 +5,9 @@ Template.topTen.rendered = function(){
 };
 
 Template.topTen.helpers({
+    'topTen': function(){
+        return Songs.find({},{sort: {Count:-1}});
+    }
 
 });
 
