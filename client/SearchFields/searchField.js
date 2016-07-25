@@ -11,25 +11,31 @@ Template.searchField.helpers({
             fields:['ID', 'Title', 'Artist'],
             showNavigation: 'always',
             rowsPerPage: 10
-        }
+        };
     }
 });
 
 Template.searchField.events({
     'click #reactive-table-1 tr': function(event, template){
-        var request = {
-            ID: event.currentTarget.children[0].textContent,
-            Title: event.currentTarget.children[1].textContent,
-            Artist: event.currentTarget.children[2].textContent
-        }
-        Meteor.call('addToPlaylist', request, function(err){
+        var selectedId = Number(event.currentTarget.children[0].textContent);
+        var request = Songs.findOne({ID: selectedId});
+        var requestSong = {
+            Artist: request.Artist,
+            Title: request.Title,
+            ID: request.ID,
+        };
+
+        Meteor.call('addToPlaylist', requestSong, function(err,succ){
             if(err){
                 console.log(err);
             }
-        })
-        var songId = request.ID;
-        console.log(songId);
-        console.log('songID', Songs.findOne({ID: 6826}));
+            // -- to be called when notifications are installed
+            // Meteor.call('notifyDj', requestSong, function(err){
+            //     if(err){
+            //         console.log(err);
+            //     }
+            // });
+        });
 
     }
 
