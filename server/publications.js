@@ -4,7 +4,10 @@ Meteor.publish('songs', function(){
 });
 Meteor.publish('playlist', function(){
     return Playlist.find({});
-})
+});
+Meteor.publish('barName', function(){
+    return BarName.find({});
+});
 // Meteor.publish('sort', function(){
 //     return Songs.find({},{sort: {Artist: 1}});
 // });
