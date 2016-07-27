@@ -5,10 +5,12 @@
         </div>
     </div>
     <div class="row">
-        <div><ol>1. blah</ol></div>
-        <div><ol>1. blah</ol></div>
-        <div><ol>1. blah</ol></div>
-        <div><ol>1. blah</ol></div>
-        <div><ol>1. blah</ol></div>
+        <ol>
+
+        {{#each playlist}}
+            <li>{{Title}}</li>
+        {{/each}}
+        </ol>
+
     </div>
 </template>

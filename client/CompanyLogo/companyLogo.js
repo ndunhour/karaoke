@@ -10,6 +10,6 @@ Template.companyLogo.helpers({
 
 Template.companyLogo.events({
     'click .js-contactHelp': function(event, template){
-        console.log("Message Sent to front desk");
+        alert('Your message has been sent');
     }
 });

@@ -25,3 +25,5 @@ meteorhacks:npm
 npm-container
 session
 aslagle:reactive-table
+twbs:bootstrap
+mrt:jquery-ui

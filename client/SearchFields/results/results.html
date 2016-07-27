@@ -5,8 +5,8 @@
         </div>
         <div class="col-xs-8 col-sm-8 col-md-8 title">
             <textarea name="title" id="titleArea" cols="30" rows="6" class="js-doSomething clickable">
-                {{#each song}}
-                    {{song.title}}
+                {{#each songs}}
+                    {{songs.Title}}
                 {{/each}}
             </textarea>
         </div>
@@ -16,7 +16,7 @@
             <h3 for="artist">Artist</h3>
         </div>
         <div class="col-xs-8 col-sm-8 col-md-8 artist">
-            <textarea name="artist" id="artistArea" cols="30" rows="6" class="js-doSomething clickable"></textarea>
+            <textarea name="artist" id="artistArea" cols="30" rows="6" class="js-doSomething clickable">{{songs}}</textarea>
         </div>
     </div>
     <div class="row">
