@@ -35,6 +35,9 @@ Meteor.methods({
         console.log('a22c', Songs.find({_id:id}));
         console.log('a2c', newCount);
         return Songs.update({_id: id}, {$set: {'Count': newCount}});
-    }
+    },
+
+    // ---- BAR METHODS ---- //
+
 
 });

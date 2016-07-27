@@ -1,27 +1,22 @@
-Template.signIn
-.created = function(){
+Template.signIn.created = function(){
 };
 
-Template.signIn
-.rendered = function(){
+Template.signIn.rendered = function(){
 };
 
-Template.signIn
-.helpers({
-    room: function(){
-        return Session.get('room');
+Template.signIn.helpers({
+    bar: function(){
+        return BarName.find({}, {sort: {createdAt: -1}});
     }
 });
 
-Template.signIn
-.events({
-    'click .js-createParty': function(event, template){
-        // var partyRoom = {
-        //     roomNum: $('.room').val(),
-        //     partyName: $('.party').val()
-        // };
-        Router.go('/home');
-        console.log("click");
+Template.signIn.events({
+    'click .js-signIn': function(){
+        var barName = ('.barName').val();
+        var username = ('.userName').val();
+        var password = ('.password').val();
 
+        console.log(barname + ", " + username + ", " + password);
     }
+
 });
