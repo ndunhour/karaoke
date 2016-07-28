@@ -3,29 +3,29 @@
         <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Establishment Name
+                {{name}}
                 <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></button>
                 <div class="dropdown-menu barName" aria-labelledby="dropdownMenu1">
-                    {{#each bar}}
-                        <p class="dropdown-item" href="#">{{barName}}</p>
+                {{list}}
+                    {{#each this}}
+                        <p class="dropdown-item clickable" id={{name}}>{{name}}</p>
                     {{/each}}
                 </div>
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
-            <input type="text" placeholder="User Name" class="userName">
+            <input type="email" name="registerEmail" placeholder="Customer Name" class="customerName">
         </div>
-    </div>
-    <div class="row">
+
         <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
-            <input type="text" placeholder="Password" class="password">
+            <input type="password" name="registerPassword" placeholder="Password" class="password">
         </div>
-    </div>
-    <div class="row">
         <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
-            <button type="button" class="btn btn-success js-signIn">Start Singing</button>
+            <button type="button" value="Sign In" class="btn btn-success js-signIn">Sign In</button>
         </div>
     </div>
+
 </template>

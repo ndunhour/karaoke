@@ -1,6 +1,21 @@
 Meteor.methods({
+    // ---- SIGN IN ----
+    'newBar': function(bar){
+        return Bar.insert(bar);
+    },
+    'newSong': function(id, newSong){
+        var update = Bar.update({_id:id}, {$push: {song:newSong}});
+        console.log('update', Bar.find({}));
+        return update;
+    },
+
+
+
+
+
+
     'findSong': function(input){
-        return Songs.find({});
+        return Bar.find({});
     },
     'addToPlaylist': function(request){
         var req = {
@@ -29,15 +44,14 @@ Meteor.methods({
     },
     'updateSongs': function(updateId, count){
         console.log('metCount', count);
-        return Songs.update({_id: updateId}, {$set: {"Count": count}});
+        return Bar.update({_id: updateId}, {$set: {"Count": count}});
     },
     'add2Count': function(id, newCount){
-        console.log('a22c', Songs.find({_id:id}));
+        console.log('a22c', Bar.find({_id:id}));
         console.log('a2c', newCount);
-        return Songs.update({_id: id}, {$set: {'Count': newCount}});
+        return Bar.update({_id: id}, {$set: {'Count': newCount}});
     },
 
     // ---- BAR METHODS ---- //
-
 
 });

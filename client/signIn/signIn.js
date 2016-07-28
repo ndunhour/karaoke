@@ -1,22 +1,39 @@
 Template.signIn.created = function(){
+    this._bar = new ReactiveVar('Establishment Name');
 };
 
 Template.signIn.rendered = function(){
 };
 
 Template.signIn.helpers({
-    bar: function(){
-        return BarName.find({}, {sort: {createdAt: -1}});
+    list: function(){
+        console.log('helper', BarName.find({}, {sort: {createdAt: -1}}));
+        return BarName.find({});
+    },
+    nameOfBar: function(){
+        return Template.instance()._bar.get();
     }
 });
 
 Template.signIn.events({
-    'click .js-signIn': function(){
-        var barName = ('.barName').val();
-        var username = ('.userName').val();
-        var password = ('.password').val();
+    'click .js-signIn': function(event, template){
+        var barName = template._bar.get();
+        var customerName = $('.customeName').val();
 
-        console.log(barname + ", " + username + ", " + password);
+        var signIn = {
+            barName: barName,
+            customerName: customerName
+        };
+
+        Meteor.call('signIn', signIn, function(err){
+            if(eff){
+                console.log(err.reason);
+            }
+        });
+    },
+    'click .barName p': function(event, template){
+        template._bar.set(event.currentTarget.textContent);
+
     }
 
 });

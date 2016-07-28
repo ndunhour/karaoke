@@ -2,25 +2,35 @@ Router.configure({
     layoutTemplate: 'baselayout'
 });
 
-Router.route('home', {
+Router.route('signIn', {
     path: '/',
-    template: 'searchField',
-    waitOn: function(){
-        return [
-            Meteor.subscribe('songs'),
-        ];
+    template: 'signIn',
+    subscriptions: function(){
+        return Meteor.subscribe('bar');
     },
     data: function(){
-        return Songs.find({});
+        return Bar.find({});
     }
 });
-Router.route('signIn', {
-    path: '/signIn',
-    template: 'signIn',
-    subscriptions: function() {
-        return Meteor.subscribe('barName');
+// Router.route('searchField', {
+//     path: '/searchField',
+//     template: 'searchField',
+//     waitOn: function(){
+//         return [
+//             Meteor.subscribe('barName'),
+//         ];
+//     },
+//     data: function(){
+//         return BarName.find({});
+//     }
+// });
+Router.route('admin', {
+    path: '/admin',
+    template: 'admin',
+    subscriptions: function(){
+        return Meteor.subscribe('bar');
     },
-    data: function() {
-        return BarName.find({}, {sort: {createdAt: -1}});
+    data: function(){
+        return Bar.find({}, {sort: {createdAt: -1}});
     }
 });

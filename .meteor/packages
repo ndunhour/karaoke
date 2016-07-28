@@ -27,3 +27,5 @@ session
 aslagle:reactive-table
 twbs:bootstrap
 mrt:jquery-ui
+accounts-ui
+accounts-password
