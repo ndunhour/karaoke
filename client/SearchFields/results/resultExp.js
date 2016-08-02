@@ -6,7 +6,7 @@ Template.resultExp.rendered = function(){
 
 Template.resultExp.helpers({
     songs: function(){
-        return Session.get('songs');
+        return Session.get('bar');
     }
 });
 

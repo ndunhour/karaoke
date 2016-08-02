@@ -12,25 +12,29 @@ Router.route('signIn', {
         return Bar.find({});
     }
 });
-// Router.route('searchField', {
-//     path: '/searchField',
-//     template: 'searchField',
-//     waitOn: function(){
-//         return [
-//             Meteor.subscribe('barName'),
-//         ];
-//     },
-//     data: function(){
-//         return BarName.find({});
-//     }
-// });
 Router.route('admin', {
     path: '/admin',
     template: 'admin',
     subscriptions: function(){
-        return Meteor.subscribe('bar');
+        return [
+            Meteor.subscribe('bar'),
+            Meteor.subscribe('songs')
+        ];
     },
     data: function(){
-        return Bar.find({}, {sort: {createdAt: -1}});
+        return Bar.find({});
+    }
+});
+Router.route('searchField', {
+    path: '/searchField/:_id',
+    template: 'searchField',
+    waitOn: function(){
+        return [
+            Meteor.subscribe('barSongbook'),
+            Meteor.subscribe('songs')
+        ];
+    },
+    data: function(){
+        return Bar.find({_id: this.params._id});
     }
 });

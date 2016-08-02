@@ -1,23 +1,34 @@
 Template.searchField.created = function(){
+    var data = this.data;
+    data._selectorId = new ReactiveVar(data._selectorId);
 };
 
 Template.searchField.rendered = function(){
+
 };
 
 Template.searchField.helpers({
     settings: function(){
+        var barId = Template.instance().data._selectorId.get();
         return {
-            collection:Bar.find({}),
+            collection:Songs.find({barId: barId}),
             fields:['ID', 'Title', 'Artist'],
             showNavigation: 'always',
             rowsPerPage: 10
+
         };
+    },
+    bar: function(){
+        var barId = Template.instance().data._selectorId.get();
+        return Songs.find({barId: barId});
     }
 });
 
 Template.searchField.events({
     'click #reactive-table-1 tr': function(event, template){
+        console.log('temp', template.data.barId);
         var selectedId = Number(event.currentTarget.children[0].textContent);
+        console.log('hi', event);
         var request = Bar.findOne({ID: selectedId});
         if(!request.hasOwnProperty('Count')){
             var updateId = request._id;
@@ -30,7 +41,6 @@ Template.searchField.events({
             });
         }
 
-        console.log('sf', Bar.find({_id: request._id}));
         var newCount = Number(request.Count + 1);
         Meteor.call('add2Count', request._id, newCount, function(err){
             if(err){
