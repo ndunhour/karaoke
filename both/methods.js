@@ -15,7 +15,6 @@ Meteor.methods({
     //     return Requests.insert({_id:this.params._id});
     // },
     'addToPlaylist': function(requestSong){
-        console.log('methods', requestSong);
         return Requests.insert(requestSong);
     },
 

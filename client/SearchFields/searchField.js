@@ -1,6 +1,5 @@
 Template.searchField.created = function(){
     var data = this.data;
-    console.log('created', data);
     data.barId = new ReactiveVar(data.barId);
 };
 
@@ -33,7 +32,6 @@ Template.searchField.events({
         var selectedId = event.currentTarget.children[0].textContent;
         var request = Songs.findOne({ID: selectedId});
 
-        console.log('cust', template.data.customerName);
         var requestSong = {
             Artist: request.Artist,
             Title: request.Title,
@@ -43,13 +41,11 @@ Template.searchField.events({
             customerName: template.data.customerName
 
         };
-        console.log('request', requestSong);
 
-        Meteor.call('addToPlaylist', requestSong, function(err,succ){
+        Meteor.call('addToPlaylist', requestSong, function(err){
             if(err){
                 console.log(err);
             }
-            console.log('succ', succ);
         });
 
     }
