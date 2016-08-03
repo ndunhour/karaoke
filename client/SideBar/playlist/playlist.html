@@ -6,13 +6,21 @@
     </div>
     <div class="row">
         <div class="playlist">
-            <ol>
-            {{#each playlist}}
-                <li class={{_id}} data-toggle="modal" data-target="#songModal">{{Title}}</li>
-            {{/each}}
-            </ol>
+            <table style="width:100%">
+                <tr>
+                    <th>Title</th>
+                    <th>Singer</th>
+                </tr>
+                {{#each playlist}}
+                <tr class={{_id}} data-toggle="modal" data-target="#songModal">
+                    <td>{{Title}}</td>
+                    <td>{{customerName}}</td>
+                </tr>
+                {{/each}}
+            </table>
         </div>
     </div>
+
     <div class="modal fade" id="songModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -24,7 +32,7 @@
             <div class="songDetail">
                 <p>Song Id: {{songDetail.ID}}</p>
                 <p>Title: {{songDetail.Title}}</p>
-                <p>Artis: {{songDetail.Artist}}</p>
+                <p>Artist: {{songDetail.Artist}}</p>
             </div>
           </div>
           <div class="modal-footer">

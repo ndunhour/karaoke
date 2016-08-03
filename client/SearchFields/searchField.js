@@ -1,10 +1,10 @@
 Template.searchField.created = function(){
     var data = this.data;
     data.barId = new ReactiveVar(data.barId);
+    data._reqId = new ReactiveVar();
 };
 
 Template.searchField.rendered = function(){
-
 };
 
 Template.searchField.helpers({
@@ -22,8 +22,8 @@ Template.searchField.helpers({
         var barId = Template.instance().data.barId.get();
         return Songs.find({barId: barId});
     },
-    custName: function(){
-        return Cust.find({});
+    request: function(){
+        return Requests.find({_id:Session.get('request')});
     }
 });
 
@@ -42,10 +42,11 @@ Template.searchField.events({
 
         };
 
-        Meteor.call('addToPlaylist', requestSong, function(err){
+        Meteor.call('addToPlaylist', requestSong, function(err, succ){
             if(err){
                 console.log(err);
             }
+            Session.set('request', succ);
         });
 
     }

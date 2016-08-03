@@ -10,10 +10,9 @@ Meteor.methods({
     'signIn': function(signIn){
         return Cust.insert(signIn);
     },
-    // 'requestSong': function(signIn){
-    //     console.log('barId', this.params._id);
-    //     return Requests.insert({_id:this.params._id});
-    // },
+    'deleteSong': function(songId){
+        return Requests.remove({_id: songId});
+    },
     'addToPlaylist': function(requestSong){
         return Requests.insert(requestSong);
     },
@@ -46,9 +45,6 @@ Meteor.methods({
         //     Title: request.Title,
             // Room: request.Room#
         // });
-    // },
-    // 'deleteSong': function(songId){
-    //     return Playlist.remove({_id: songId});
     // },
     // 'updateSongs': function(updateId, count){
     //     console.log('metCount', count);
