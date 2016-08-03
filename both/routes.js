@@ -1,17 +1,6 @@
 Router.configure({
     layoutTemplate: 'baselayout'
 });
-
-Router.route('signIn', {
-    path: '/',
-    template: 'signIn',
-    subscriptions: function(){
-        return Meteor.subscribe('bar');
-    },
-    data: function(){
-        return Bar.find({});
-    }
-});
 Router.route('admin', {
     path: '/admin',
     template: 'admin',
@@ -25,16 +14,31 @@ Router.route('admin', {
         return Bar.find({});
     }
 });
+// --------- customer -----------//
+Router.route('signIn', {
+    path: '/',
+    template: 'signIn',
+    subscriptions: function(){
+        return [
+            Meteor.subscribe('bar'),
+            ];
+    },
+    data: function(){
+        return {};
+    }
+});
 Router.route('searchField', {
     path: '/searchField/:_id',
     template: 'searchField',
     waitOn: function(){
         return [
-            Meteor.subscribe('barSongbook'),
-            Meteor.subscribe('songs')
+            Meteor.subscribe('bar'),
+            Meteor.subscribe('songs'),
+            Meteor.subscribe('cust'),
+            Meteor.subscribe('requests')
         ];
     },
     data: function(){
-        return Bar.find({_id: this.params._id});
+        return Cust.findOne({_id: this.params._id});
     }
 });

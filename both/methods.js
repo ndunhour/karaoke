@@ -7,16 +7,24 @@ Meteor.methods({
         var update = Songs.insert(newSong);
         return update;
     },
-    'signIn': function(nameOfBar, customer){
-        var info = Bar.findOne({name:nameOfBar});
-        var customers = Bar.update({_id:info._id}, {$push: {customers: customer}});
-        return customers;
+    'signIn': function(signIn){
+        return Cust.insert(signIn);
     },
-    'insertBar': function(song){
-        var insertBar = Bar.insert({$push: {songs: song}});
-        console.log('insertBar', insertBar);
-        return insertBar;
-    }
+    // 'requestSong': function(signIn){
+    //     console.log('barId', this.params._id);
+    //     return Requests.insert({_id:this.params._id});
+    // },
+    'addToPlaylist': function(requestSong){
+        console.log('methods', requestSong);
+        return Requests.insert(requestSong);
+    },
+
+
+    // 'insertBar': function(song){
+    //     var insertBar = Bar.insert({$push: {songs: song}});
+    //     console.log('insertBar', insertBar);
+    //     return insertBar;
+    // }
 
 
 
@@ -25,14 +33,6 @@ Meteor.methods({
 
     // 'findSong': function(input){
     //     return Bar.find({});
-    // },
-    // 'addToPlaylist': function(request){
-    //     var req = {
-    //         Title: request.Title,
-    //         Artist: request.Artist,
-    //         ID: request.ID
-    //     };
-    //     return Playlist.insert(req);
     // },
     // 'notifyDj': function(request){
     //     var notifyDj = {

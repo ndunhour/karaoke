@@ -1,6 +1,7 @@
 Template.searchField.created = function(){
     var data = this.data;
-    data._selectorId = new ReactiveVar(data._selectorId);
+    console.log('created', data);
+    data.barId = new ReactiveVar(data.barId);
 };
 
 Template.searchField.rendered = function(){
@@ -9,7 +10,7 @@ Template.searchField.rendered = function(){
 
 Template.searchField.helpers({
     settings: function(){
-        var barId = Template.instance().data._selectorId.get();
+        var barId = Template.instance().data.barId.get();
         return {
             collection:Songs.find({barId: barId}),
             fields:['ID', 'Title', 'Artist'],
@@ -19,50 +20,36 @@ Template.searchField.helpers({
         };
     },
     bar: function(){
-        var barId = Template.instance().data._selectorId.get();
+        var barId = Template.instance().data.barId.get();
         return Songs.find({barId: barId});
+    },
+    custName: function(){
+        return Cust.find({});
     }
 });
 
 Template.searchField.events({
     'click #reactive-table-1 tr': function(event, template){
-        console.log('temp', template.data.barId);
-        var selectedId = Number(event.currentTarget.children[0].textContent);
-        console.log('hi', event);
-        var request = Bar.findOne({ID: selectedId});
-        if(!request.hasOwnProperty('Count')){
-            var updateId = request._id;
-            var count = 0;
-            Meteor.call('updateSongs', updateId, count, function(err, succ){
-                if(err){
-                    console.log(err.reason);
-                }
-                console.log('succ', succ);
-            });
-        }
+        var selectedId = event.currentTarget.children[0].textContent;
+        var request = Songs.findOne({ID: selectedId});
 
-        var newCount = Number(request.Count + 1);
-        Meteor.call('add2Count', request._id, newCount, function(err){
-            if(err){
-                console.log(err.reason);
-            }
-        });
+        console.log('cust', template.data.customerName);
         var requestSong = {
             Artist: request.Artist,
             Title: request.Title,
             ID: request.ID,
+            barId: template.data.barId,
+            barName: template.data.barName,
+            customerName: template.data.customerName
+
         };
+        console.log('request', requestSong);
 
         Meteor.call('addToPlaylist', requestSong, function(err,succ){
             if(err){
                 console.log(err);
             }
-            // -- to be called when notifications are installed
-            // Meteor.call('notifyDj', requestSong, function(err){
-            //     if(err){
-            //         console.log(err);
-            //     }
-            // });
+            console.log('succ', succ);
         });
 
     }

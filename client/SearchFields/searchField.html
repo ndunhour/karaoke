@@ -1,17 +1,14 @@
 <template name="searchField">
     <div class="row">
         <div class="col-md-12">
+            <p> Welcome <strong>{{customerName}}</strong> to <strong>{{barName}}</strong>, we hope you enjoy yourself</p>
+        </div>
+        <div class="col-md-12">
             <h3>Search Songs</h3>
         </div>
     </div>
 
     <div class="row">
         {{> reactiveTable settings=settings}}
-    </div>
-
-    <div>
-        {{#each bar}}
-            <p> what?  {{Title}}</p>
-        {{/each}}
     </div>
 </template>

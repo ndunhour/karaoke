@@ -5,7 +5,9 @@ Meteor.publish('bar', function(){
 Meteor.publish('songs', function(){
     return Songs.find({});
 });
-
-Meteor.publish('barSongbook', function(){
-    return Bar.find({});
+Meteor.publish('cust', function(){
+    return Cust.find({});
+});
+Meteor.publish('requests', function(){
+    return Requests.find({});
 });
