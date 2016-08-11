@@ -1,4 +1,5 @@
 Template.signIn.created = function(){
+    console.log('signInCreated', this);
     this._bar = new ReactiveVar('Establishment Name');
     this._barId = new ReactiveVar();
 };
@@ -17,20 +18,32 @@ Template.signIn.helpers({
 
 Template.signIn.events({
     'click .js-signIn': function(event, template){
+        var emailVar = $('.email').val();
+        var passwordVar = $('.password').val();
         var signIn = {
+            emailVar: $('.email').val(),
+            passwordVar: $('.password').val()
+        };
+        console.log('signIn', signIn);
+        var reg = {
             barId: template._barId.get(),
             barName: template._bar.get(),
             customerName: $('.customerName').val()
         };
+        console.log('reg', reg);
+        // Meteor.loginWithPassword(emailVar, passwordVar);
+        // Meteor.call('signIn', signIn, function(err, succ){
+        //     if(err){
+        //         console.log(err.reason);
+        //     }
+            // Router.go('/searchField/' + succ);
+        // });
 
-        Meteor.call('signIn', signIn, function(err, succ){
-            if(err){
-                console.log(err.reason);
-            }
-            Router.go('/searchField/' + succ);
-        });
-
-
+        // ------
+        // 'submit form': function(event){
+        // event.preventDefault();
+        // }
+        // ------
     },
     'click .name p': function(event, template){
         template._bar.set(event.currentTarget.textContent);

@@ -7,7 +7,7 @@ Template.playlist.rendered = function(){
 
 Template.playlist.helpers({
     playlist: function(){
-        return Requests.find({}).fetch();
+        return Requests.find({barName: Template.instance().data.barName});
     },
     songDetail: function(){
         var songDetail = Session.get('songDetail');

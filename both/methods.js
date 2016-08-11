@@ -1,11 +1,14 @@
 Meteor.methods({
     // ---- SIGN IN ----
+    'users': function(id){
+        console.log("id", Meteor.users.find({_id: id}));
+        return Meteor.users.find({_id: id});
+    },
     'newBar': function(bar){
         return Bar.insert(bar);
     },
     'newSong': function(newSong){
-        var update = Songs.insert(newSong);
-        return update;
+        return Songs.insert(newSong);
     },
     'signIn': function(signIn){
         return Cust.insert(signIn);
@@ -16,46 +19,7 @@ Meteor.methods({
     'addToPlaylist': function(requestSong){
         return Requests.insert(requestSong);
     },
-
-
-    // 'insertBar': function(song){
-    //     var insertBar = Bar.insert({$push: {songs: song}});
-    //     console.log('insertBar', insertBar);
-    //     return insertBar;
-    // }
-
-
-
-
-
-
-    // 'findSong': function(input){
-    //     return Bar.find({});
-    // },
-    // 'notifyDj': function(request){
-    //     var notifyDj = {
-    //         Artist: request.Artist,
-    //         ID: request.ID,
-    //         Title: request.Title,
-    //         _id: request._id
-    //     };
-        // return Push.send({
-        //     Artist: request.Artist,
-        //     ID: request.ID,
-        //     Title: request.Title,
-            // Room: request.Room#
-        // });
-    // },
-    // 'updateSongs': function(updateId, count){
-    //     console.log('metCount', count);
-    //     return Bar.update({_id: updateId}, {$set: {"Count": count}});
-    // },
-    // 'add2Count': function(id, newCount){
-    //     console.log('a22c', Bar.find({_id:id}));
-    //     console.log('a2c', newCount);
-    //     return Bar.update({_id: id}, {$set: {'Count': newCount}});
-    // },
-
-    // ---- BAR METHODS ---- //
-
+    'addName': function(cust){
+        return Meteor.users.update({_id:this.userId},{$set: {profile: cust}});
+    }
 });
