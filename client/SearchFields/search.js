@@ -63,6 +63,7 @@ Template.search.events({
     'click .js-close': function(event, template){
         $('.request').css({'display': 'none'});
         $('.main').css({'display': 'inline'});
+        document.location.reload(true);
 
     }
 
