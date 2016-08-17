@@ -13,8 +13,8 @@ Meteor.methods({
 
         return collection.insert(newSong);
     },
-    'signIn': function(signIn){
-        return Cust.insert(signIn);
+    'signIn': function(reg){
+        return Cust.insert(reg);
     },
     'deleteSong': function(songId){
         return Requests.remove({_id: songId});

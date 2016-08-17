@@ -1,9 +1,13 @@
+nameToCollection = function(barName) {
+    var root = Meteor.isClient ? window : global;
+    return root[barName];
+};
+
+
 Template.search.created = function(){
     var data = this.data; // return barId and name
-    console.log('search', data);
-    data.barId = new ReactiveVar(data._selectorId);
-    data._reqId = new ReactiveVar();
-    data._custId = new ReactiveVar(data._id);
+    console.log('data', data.collection.name);
+    data.barName = new ReactiveVar(data.collection.name);
 };
 
 Template.search.rendered = function(){
@@ -11,8 +15,9 @@ Template.search.rendered = function(){
 
 Template.search.helpers({
     settings: function(){
+        var collection = nameToCollection(Template.instance().data.barName.get());
         return {
-            collection: Bar.find({barId:Template.instance().data.barId.get()}),
+            collection: collection.find({}),
             fields:['ID', 'Title', 'Artist'],
             showNavigation: 'always',
             rowsPerPage: 10
@@ -20,22 +25,22 @@ Template.search.helpers({
         };
     },
     songs: function(){
-        console.log('hi', Template.instance().data.barId.get());
-        return Bar.find({barId:Template.instance().data.barId.get()});
-
+        var collection = nameToCollection(Template.instance().data.barName.get());
+        return collection.find({});
     }
 });
 
 Template.search.events({
     'click #reactive-table-1 tr': function(event, template){
+        var collection = nameToCollection(Template.instance().data.barName.get());
+
         var selectedId = event.currentTarget.children[0].textContent;
         console.log('selectedId', selectedId);
-        var req = Songs.findOne({ $and: [ {ID: selectedId} , {barId:template.data.barId.get()}]});
+        var req = collection.findOne({ $and: [ {ID: selectedId} , {barName:template.data.barName.get()}]});
         var requestSong = {
             Artist: req.Artist,
             Title: req.Title,
             ID: req.ID,
-            barId: template.data.barId,
             barName: template.data.barName,
             customerName: template.data.customerName,
             date: Date(Date.now())

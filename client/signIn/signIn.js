@@ -19,13 +19,19 @@ Template.signIn.events({
     'click .js-signIn': function(event, template){
         var signIn = {
             fName: $('.fName').val(),
-            lName: $('.lName').val()
         };
         var reg = {
             barId: template._barId.get(),
             barName: template._barName.get(),
             fname: $('.fName').val()
         };
+
+        Meteor.call('signIn', reg, function(err){
+            if(err){
+                console.log(err.reason);
+            }
+        });
+        Meteor._reload.reload();
         Router.go('/search/' + template._barName.get());
     },
     'click .name p': function(event, template){

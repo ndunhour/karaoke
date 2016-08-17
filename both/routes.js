@@ -54,7 +54,6 @@ Router.route('search', {
         };
 
         var collection = nameToCollection(barName);
-
         return collection.find({});
     }
 });
