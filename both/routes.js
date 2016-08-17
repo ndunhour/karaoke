@@ -15,32 +15,18 @@ Router.route('admin', {
 });
 // --------- customer -----------//
 
-Router.route('reg', {
-    path:'/reg',
-    template: 'reg',
-    layoutTemplate: null,
-    subscriptions: function(){
-        return [
-            Meteor.subscribe('bar'),
-            Meteor.subscribe('users', this.params._id)
-        ];
-    },
-    data: function(){
-        return Meteor.users.findOne({_id: this.params._id});
-    }
-});
+
 Router.route('signIn', {
     path: '/',
     template: 'signIn',
     layoutTemplate:null,
     subscriptions: function(){
-        console.log('signInThis', this.params);
         return [
             Meteor.subscribe('bar'),
             ];
     },
     data: function(){
-        return Bar.findOne({_id:this.params._id});
+        return Bar.find({});
     }
 });
 Router.route('signUp', {
@@ -51,15 +37,24 @@ Router.route('signUp', {
         return {};
     }
 });
-Router.route('searchField', {
-    path: '/searchField/:_id',
-    template: 'searchField',
+Router.route('search', {
+    path: '/search/:_id',
+    template: 'search',
     waitOn: function(){
-        return [
-            Meteor.subscribe('bar'),
-        ];
+        var barName = this.params._id;
+
+        return Meteor.subscribe(barName);
     },
     data: function(){
-        return Cust.findOne({_id: this.params._id});
+        var barName = this.params._id;
+
+        var nameToCollection = function(barName) {
+        var root = Meteor.isClient ? window : global;
+            return root[barName];
+        };
+
+        var collection = nameToCollection(barName);
+
+        return collection.find({});
     }
 });

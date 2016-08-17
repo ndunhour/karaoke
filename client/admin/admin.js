@@ -6,7 +6,7 @@ Template.admin.rendered = function(){
 };
 
 Template.admin.helpers({
-    barName: function(){
+    bars: function(){
         return Bar.find({});
     },
     listBars: function(){
@@ -18,9 +18,9 @@ Template.admin.helpers({
 Template.admin.events({
     'click .js-createBar': function(event, template){
         var bar = {
-            name: $('.name').val(),
+            barName: $('.barName').val()
         };
-        template._barName.set($('.name').val());
+        template._barName.set($('.barName').val());
         Meteor.call('newBar', bar, function(err){
             if(err){
                 console.log(err.reason);
@@ -31,7 +31,7 @@ Template.admin.events({
         template._barName.set(event.currentTarget.textContent);
     },
     'click .js-newSong': function(event, template){
-        var barId = Bar.findOne({name: template._barName.get()})._id;
+        var barId = Bar.findOne({barName: template._barName.get()})._id;
         var newSong = {
             Title: $('.title').val(),
             Artist: $('.artist').val(),
@@ -39,14 +39,12 @@ Template.admin.events({
             barId: barId,
             barName: template._barName.get()
         };
-
-        Meteor.call('newSong', newSong, function(err){
+        Meteor.call('insertSong', newSong.barName, newSong, function(err){
             if(err){
                 console.log(err.reason);
             }
         });
-
-        $('.name').val("");
+        $('.barName').val("");
         $('.title').val("");
         $('.artist').val("");
         $('.songId').val("");

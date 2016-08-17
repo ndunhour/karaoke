@@ -1,4 +1,4 @@
-<template name="searchField">
+<template name="search">
     <div class="row">
         <div class="col-md-12">
             <p> Welcome <strong>{{customerName}}</strong> to <strong>{{barName}}</strong>, we hope you enjoy yourself</p>
@@ -11,8 +11,6 @@
     <div class="row" data-toggle="modal" data-target="#myModal">
         {{> reactiveTable settings=settings}}
     </div>
-
-    {{> playlist}}
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">

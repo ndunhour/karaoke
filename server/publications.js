@@ -17,3 +17,9 @@ Meteor.publish('cust', function(){
 Meteor.publish('users', function(id){
     return Meteor.users.findOne({_id:id});
 });
+Meteor.publish('HMC', function(){
+    return HMC.find({});
+});
+Meteor.publish('AB', function(){
+    return AB.find({});
+});

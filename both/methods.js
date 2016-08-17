@@ -1,14 +1,17 @@
 Meteor.methods({
     // ---- SIGN IN ----
-    'users': function(id){
-        console.log("id", Meteor.users.find({_id: id}));
-        return Meteor.users.find({_id: id});
-    },
     'newBar': function(bar){
         return Bar.insert(bar);
     },
-    'newSong': function(newSong){
-        return Songs.insert(newSong);
+    'insertSong': function(barName, newSong){
+        var nameToCollection = function(barName) {
+            var root = Meteor.isClient ? window : global;
+            return root[barName];
+        };
+
+        var collection = nameToCollection(barName);
+
+        return collection.insert(newSong);
     },
     'signIn': function(signIn){
         return Cust.insert(signIn);
@@ -19,7 +22,4 @@ Meteor.methods({
     'addToPlaylist': function(requestSong){
         return Requests.insert(requestSong);
     },
-    'addName': function(cust){
-        return Meteor.users.update({_id:this.userId},{$set: {profile: cust}});
-    }
 });

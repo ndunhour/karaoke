@@ -1,28 +1,32 @@
-Template.searchField.created = function(){
+Template.search.created = function(){
     var data = this.data; // return barId and name
     console.log('search', data);
-    data.barId = new ReactiveVar(data.barId);
+    data.barId = new ReactiveVar(data._selectorId);
     data._reqId = new ReactiveVar();
     data._custId = new ReactiveVar(data._id);
 };
 
-Template.searchField.rendered = function(){
+Template.search.rendered = function(){
 };
 
-Template.searchField.helpers({
+Template.search.helpers({
     settings: function(){
-        console.log('settings', Template.instance().data.barName);
         return {
-            collection: Songs.find({barName: Template.instance().data.barName}),
+            collection: Bar.find({barId:Template.instance().data.barId.get()}),
             fields:['ID', 'Title', 'Artist'],
             showNavigation: 'always',
             rowsPerPage: 10
 
         };
+    },
+    songs: function(){
+        console.log('hi', Template.instance().data.barId.get());
+        return Bar.find({barId:Template.instance().data.barId.get()});
+
     }
 });
 
-Template.searchField.events({
+Template.search.events({
     'click #reactive-table-1 tr': function(event, template){
         var selectedId = event.currentTarget.children[0].textContent;
         console.log('selectedId', selectedId);
