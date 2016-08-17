@@ -43,7 +43,10 @@ Router.route('search', {
     waitOn: function(){
         var barName = this.params._id;
 
-        return Meteor.subscribe(barName);
+        return [
+            Meteor.subscribe(barName),
+            Meteor.subscribe('cust')
+            ];
     },
     data: function(){
         var barName = this.params._id;

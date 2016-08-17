@@ -23,7 +23,8 @@ Template.signIn.events({
         var reg = {
             barId: template._barId.get(),
             barName: template._barName.get(),
-            fname: $('.fName').val()
+            fname: $('.fName').val(),
+            date: Date(Date.now())
         };
 
         Meteor.call('signIn', reg, function(err){

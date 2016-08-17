@@ -5,6 +5,10 @@ Template.companyLogo.rendered = function(){
 };
 
 Template.companyLogo.helpers({
+    cust: function(){
+        var cust = Cust.findOne({},{sort: {date:-1}});
+        return Cust.findOne({},{sort: {date:-1}});
+    }
 
 });
 

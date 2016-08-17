@@ -6,11 +6,12 @@ nameToCollection = function(barName) {
 
 Template.search.created = function(){
     var data = this.data; // return barId and name
-    console.log('data', data.collection.name);
     data.barName = new ReactiveVar(data.collection.name);
+    this.custName = new ReactiveVar();
 };
 
 Template.search.rendered = function(){
+
 };
 
 Template.search.helpers({
@@ -27,26 +28,27 @@ Template.search.helpers({
     songs: function(){
         var collection = nameToCollection(Template.instance().data.barName.get());
         return collection.find({});
+    },
+    cust: function(){
+        var cust = Cust.findOne({},{sort: {date:-1}});
+        Template.instance().custName.set(cust.fname);
+        return Cust.findOne({},{sort: {date:-1}});
     }
+
 });
 
 Template.search.events({
-    'click #reactive-table-1 tr': function(event, template){
-        var collection = nameToCollection(Template.instance().data.barName.get());
-
-        var selectedId = event.currentTarget.children[0].textContent;
-        console.log('selectedId', selectedId);
-        var req = collection.findOne({ $and: [ {ID: selectedId} , {barName:template.data.barName.get()}]});
+    'click .reactive-table tbody tr': function(event, template){
+        var req = this;
         var requestSong = {
             Artist: req.Artist,
             Title: req.Title,
             ID: req.ID,
             barName: template.data.barName,
-            customerName: template.data.customerName,
+            custName: template.custName.get(),
             date: Date(Date.now())
 
         };
-        console.log('reqSong', requestSong);
 
         Meteor.call('addToPlaylist', requestSong, function(err, succ){
             if(err){
@@ -54,8 +56,14 @@ Template.search.events({
             }
         });
         var modal = Requests.findOne({},{sort:{date:-1}});
+        $('.request').css({'display': 'block'});
+        $('.msg').text("Your request to sing " + modal.Title + " by " + modal.Artist + " will be played shortly").css({'background': 'red'});
+        $('.main').css({'display': 'none'});
+    },
+    'click .js-close': function(event, template){
+        $('.request').css({'display': 'none'});
+        $('.main').css({'display': 'inline'});
 
-        $('.request').text("Your request to sing " + modal.Title + " by " + modal.Artist + " will be played shortly");
     }
 
 });
