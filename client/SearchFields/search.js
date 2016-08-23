@@ -39,11 +39,10 @@ Template.search.helpers({
 
 Template.search.events({
     'click .reactive-table tbody tr': function(event, template){
-        var req = this;
         var requestSong = {
-            Artist: req.Artist,
-            Title: req.Title,
-            ID: req.ID,
+            Artist: this.Artist,
+            Title: this.Title,
+            ID: this.ID,
             barName: template.data.barName,
             custName: template.custName.get(),
             date: Date(Date.now())
@@ -52,13 +51,28 @@ Template.search.events({
 
         Meteor.call('addToPlaylist', requestSong, function(err, succ){
             if(err){
-                console.log(err);
+                console.log('here',err.reason);
+            }
+
+            if(HMC.find({"request_counter" : { "$exists" : true}})){
+                Meteor.call('counter', requestSong, function(err,succ){
+                    if(err){
+                        console.log(err.reason);
+                    }
+                });
+            }else{
+                Meteor.call('insertCounter', requestSong, function(err,succ){
+                    if(err){
+                        console.log(err.reason);
+                    }
+                });
             }
         });
         var modal = Requests.findOne({},{sort:{date:-1}});
         $('.request').css({'display': 'block'});
         $('.msg').text("Your request to sing " + modal.Title + " by " + modal.Artist + " will be played shortly").css({'background': 'red'});
         $('.main').css({'display': 'none'});
+
     },
     'click .js-close': function(event, template){
         $('.request').css({'display': 'none'});

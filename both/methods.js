@@ -22,4 +22,17 @@ Meteor.methods({
     'addToPlaylist': function(requestSong){
         return Requests.insert(requestSong);
     },
+    'insertJson': function(theFile){
+        return HMC.insert(theFile);
+    },
+    'counter': function(requestSong){
+        return HMC.update({ID: requestSong.ID}, {
+            $inc: {request_count: 1},
+
+        }, {upsert: true});
+    },
+    'insertCounter': function(requestSong){
+        return HMC.update({ID: requestSong.ID},{$set: {
+            request_count: 1}});
+    }
 });
