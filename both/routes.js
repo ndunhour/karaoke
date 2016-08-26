@@ -42,15 +42,16 @@ Router.route('search', {
     template: 'search',
     waitOn: function(){
         var barName = this.params._id;
-
         return [
             Meteor.subscribe(barName),
-            Meteor.subscribe('cust')
+            Meteor.subscribe('cust'),
+            // Meteor.subscribe('requests' + barName),
+            Meteor.subscribe('requests')
+
             ];
     },
     data: function(){
         var barName = this.params._id;
-
         var nameToCollection = function(barName) {
         var root = Meteor.isClient ? window : global;
             return root[barName];

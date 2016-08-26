@@ -23,7 +23,7 @@ Template.signIn.events({
         var reg = {
             barId: template._barId.get(),
             barName: template._barName.get(),
-            fname: $('.fName').val(),
+            fName: $('.fName').val(),
             date: Date(Date.now())
         };
 

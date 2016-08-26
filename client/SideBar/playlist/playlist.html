@@ -4,24 +4,18 @@
             <h3>Play List</h3>
         </div>
     </div>
+
     <div class="row">
         <div class="playlist">
-            <table style="width:100%">
-                <tr>
-                    <th>Title</th>
-                    <th>Singer</th>
-                </tr>
+            <ol>
                 {{#each playlist}}
-                <tr class={{_id}} data-toggle="modal" data-target="#songModal">
-                    <td>{{Title}}</td>
-                    <td>{{customerName}}</td>
-                </tr>
+                    <li class="{{_id}}"><strong>{{Title}}</strong> sung by <strong>{{custName}}</strong></li>
                 {{/each}}
-            </table>
+            </ol>
         </div>
     </div>
 
-    <div class="modal fade" id="songModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--     <div class="modal fade" id="songModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -41,5 +35,5 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 </template>

@@ -5,14 +5,12 @@
         </div>
     </div>
     <div class="row">
-        <div class="row">
         <div class="playlist">
             <ol>
             {{#each topTen}}
-                <li class={{_id}}>{{Title}} {{Count}}</li>
+                <li class={{_id}}>{{Title}} {{request_count}}</li>
             {{/each}}
             </ol>
         </div>
-    </div>
     </div>
 </template>
