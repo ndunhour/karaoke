@@ -1,8 +1,11 @@
 <template name="adminDash">
+    {{> companyLogo}}
     <p>You're logged in.</p>
     <p><a href="#" class="logout">Logout</a></p>
 
-
+    <div>
+        <h2>Admin for {{barName}}</h2>
+    </div>
     <div class="createBar">
         <input type="text" class="barName" placeholder="Establishment Name">
         <button class="js-createBar" >Create Bar</button>
@@ -25,6 +28,13 @@
             <input type="text" class="songId" placeholder="Song Id">
             <button class="js-newSong" >Enter New Song</button>
         </div>
+    </div>
+
+    <div>
+        <h3>Playlist</h3>
+        {{#each playlist}}
+            <li>{{Title}}</li>
+        {{/each}}
     </div>
 
 </template>

@@ -7,12 +7,22 @@ Router.route('admin', {
     layoutTemplate:null,
     subscriptions: function(){
         return [
-            Meteor.subscribe('bar'),
             Meteor.subscribe('requests')
         ];
     },
     data: function(){
-        return Bar.find({});
+        return Meteor.users.findOne({_id: this.params._id});
+    }
+});
+Router.route('adminDash', {
+    path: '/adminDash/:_id',
+    template: 'adminDash',
+    layoutTemplate: null,
+    waitOn: function() {
+        return Meteor.subscribe('admin', this.params._id);
+    },
+    data: function(){
+        return Meteor.users.findOne({_id: this.params._id});
     }
 });
 // --------- customer -----------//

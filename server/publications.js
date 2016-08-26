@@ -13,3 +13,6 @@ Meteor.publish('HMC', function(){
 Meteor.publish('AB', function(){
     return AB.find({});
 });
+Meteor.publish('admin', function(id){
+    return Meteor.users.find({_id: id});
+});

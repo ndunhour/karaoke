@@ -9,8 +9,8 @@ Template.search.created = function(){
     this.custName = new ReactiveVar();
 };
 
-Template.search.rendered = function(){
-
+Template.search.onRendered = function(){
+    $('.reactive-table-input').focus();
 };
 
 Template.search.helpers({

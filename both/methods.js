@@ -46,5 +46,11 @@ Meteor.methods({
         var collection = nameToCollection(barName);
         return collection.update({ID: requestSong.ID},{$set: {
             request_count: 1}});
+    },
+    'updateAdmin': function(barName){
+        return Meteor.users.update({_id:this.userId},{$set: {barName: barName}});
+    },
+    'createAdmin': function(admin){
+        return Accounts.createUser(admin);
     }
 });
