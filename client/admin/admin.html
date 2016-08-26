@@ -1,25 +1,10 @@
 <template name="admin">
-    <div class="createBar">
-        <input type="text" class="barName" placeholder="Establishment Name">
-        <button class="js-createBar" >Create Bar</button>
-    </div>
+    {{> companyLogo}}
 
-    <div class="updateSongs">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{listBars}}
-            <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></button>
-            <div class="dropdown-menu listBars" aria-labelledby="dropdownMenu1">
-                {{#each bars}}
-                    <p class="dropdown-item clickable" id={{barName}}>{{barName}}</p>
-                {{/each}}
-            </div>
-        </div>
-        <div>
-            <input type="text" class="title" placeholder="Title">
-            <input type="text" class="artist" placeholder="Artist">
-            <input type="text" class="songId" placeholder="Song Id">
-            <button class="js-newSong" >Enter New Song</button>
-        </div>
-    </div>
+    {{#if currentUser}}
+        {{> adminDash}}
+    {{else}}
+        {{> adminReg}}
+        {{> adminLogIn}}
+    {{/if}}
 </template>

@@ -40,5 +40,8 @@ Template.signIn.events({
         var barId = Bar.findOne({barName: template._barName.get()});
         template._barId.set(barId._id);
     },
+    'click .admin': function(event, template){
+        Router.go('/admin');
+    }
 
 });

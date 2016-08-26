@@ -4,9 +4,11 @@ Router.configure({
 Router.route('admin', {
     path: '/admin',
     template: 'admin',
+    layoutTemplate:null,
     subscriptions: function(){
         return [
             Meteor.subscribe('bar'),
+            Meteor.subscribe('requests')
         ];
     },
     data: function(){
@@ -61,3 +63,4 @@ Router.route('search', {
         return collection.find({});
     }
 });
+
