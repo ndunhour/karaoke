@@ -5,13 +5,15 @@ Router.route('admin', {
     path: '/admin',
     template: 'admin',
     layoutTemplate:null,
-    subscriptions: function(){
-        return [
-            Meteor.subscribe('requests')
-        ];
-    },
+    // waitOn: function(){
+    //     return [
+    //         Meteor.subscribe('requests')
+    //     ];
+    // },
     data: function(){
-        return Meteor.users.findOne({_id: this.params._id});
+        // return Meteor.users.findOne({_id: this.params._id});
+        return {};
+
     }
 });
 Router.route('adminDash', {
@@ -19,10 +21,28 @@ Router.route('adminDash', {
     template: 'adminDash',
     layoutTemplate: null,
     waitOn: function() {
-        return Meteor.subscribe('admin', this.params._id);
+        return [
+            Meteor.subscribe('admin', this.params._id),
+            Meteor.subscribe('requests')
+        ];
     },
     data: function(){
         return Meteor.users.findOne({_id: this.params._id});
+    }
+});
+Router.route('adminReg', {
+    path: '/adminReg/',
+    template: 'adminReg',
+    layoutTemplate: null,
+    waitOn: function() {
+        return [
+            Meteor.subscribe('admin', this.params._id)
+            ];
+    },
+    data: function(){
+        // return Meteor.users.findOne({_id: this.params._id});
+        return {};
+
     }
 });
 // --------- customer -----------//
@@ -32,7 +52,7 @@ Router.route('signIn', {
     path: '/',
     template: 'signIn',
     layoutTemplate:null,
-    subscriptions: function(){
+    waitOn: function(){
         return [
             Meteor.subscribe('bar'),
             ];

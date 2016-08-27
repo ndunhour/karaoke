@@ -3,7 +3,7 @@
     <p>You're logged in.</p>
     <p><a href="#" class="logout">Logout</a></p>
 
-    <div>
+    <!-- <div>
         <h2>Admin for {{barName}}</h2>
     </div>
     <div class="createBar">
@@ -28,13 +28,27 @@
             <input type="text" class="songId" placeholder="Song Id">
             <button class="js-newSong" >Enter New Song</button>
         </div>
-    </div>
+    </div> -->
 
     <div>
-        <h3>Playlist</h3>
-        {{#each playlist}}
-            <li>{{Title}}</li>
-        {{/each}}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Song ID</th>
+                    <th>Title</th>
+                    <th>Customer Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each requests}}
+                <tr class="js-tr" id="{{_id}}">
+                    <td>{{ID}}</td>
+                    <td>{{Title}}</td>
+                    <td>{{custName}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
     </div>
 
 </template>

@@ -13,7 +13,13 @@ Template.adminLogIn.events({
         event.preventDefault();
         var emailVar = event.target.loginEmail.value;
         var passwordVar = event.target.loginPassword.value;
-        Meteor.loginWithPassword(emailVar, passwordVar);
+        Meteor.loginWithPassword(emailVar, passwordVar, function(err){
+            if(err){
+                console.log(err.reason);
+                Router.go('/admin');
+            }
+                Router.go('/adminDash/' + Meteor.userId());
+        });
         console.log("Form submitted.");
     }
 });

@@ -40,8 +40,6 @@ Template.adminReg.events({
             }
 
         });
-        console.log('id', this.userId);
-
         console.log("Form submitted.");
     }
 });
