@@ -1,9 +1,3 @@
-nameToCollection = function(barName) {
-    var root = Meteor.isClient ? window : global;
-    return root[barName];
-};
-
-
 Template.search.created = function(){
     var data = this.data; // return barId and name
     this.custName = new ReactiveVar();
@@ -31,6 +25,7 @@ Template.search.helpers({
     cust: function(){
         var cust = Cust.findOne({},{sort: {date:-1}});
         Template.instance().custName.set(cust.fName);
+        Session.set('cust', Template.instance().custName.get());
         return Cust.findOne({},{sort: {date:-1}});
     },
     playlist: function(){
@@ -50,7 +45,6 @@ Template.search.events({
             custName: template.custName.get(),
             date: Date(Date.now()),
         };
-        // adding cust req to playList
         var collection = nameToCollection(barName);
         Meteor.call('addToPlaylist', requestSong, function(err, succ){
             if(err){
