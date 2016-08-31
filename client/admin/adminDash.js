@@ -35,6 +35,7 @@ Template.adminDash.events({
         Router.go('/adminReg');
     },
     'click .js-tr': function(event, template){
+        event.preventDefault();
         var deleteSong = event.currentTarget.id;
         Meteor.call('deleteSong', deleteSong, function(err){
             if(err){

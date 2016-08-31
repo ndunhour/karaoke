@@ -14,7 +14,8 @@ Template.companyLogo.helpers({
 
 Template.companyLogo.events({
     'click .js-contactHelp': function(event, template){
-        alert('Your message has been sent');
+        console.log('id', template);
+        // Router.go('/contactDj');
     },
     'click .js-logOut': function(event, template){
         event.preventDefault();

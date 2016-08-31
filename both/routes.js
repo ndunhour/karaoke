@@ -93,4 +93,21 @@ Router.route('search', {
         return collection.find({});
     }
 });
+Router.route('contactDj', {
+    path: '/contactDj',
+    template: 'contactDj',
+    layoutTemplate:null,
+    waitOn: function(){
+        // var barName = this.params._id;
+        return [
+            // Meteor.subscribe(barName),
+            Meteor.subscribe('cust'),
+            // Meteor.subscribe('requests' + barName),
+            Meteor.subscribe('requests')
 
+            ];
+    },
+    data: function(){
+        return Cust.findOne({});
+    }
+});

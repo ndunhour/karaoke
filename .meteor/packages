@@ -15,7 +15,6 @@ tracker                 # Meteor's client-side reactive programming library
 standard-minifier-css   # CSS minifier run for production mode
 standard-minifier-js    # JS minifier run for production mode
 
-insecure                # Allow all DB writes from clients (for prototyping)
 http
 iron:router
 underscore
@@ -29,3 +28,4 @@ twbs:bootstrap
 mrt:jquery-ui
 accounts-ui
 accounts-password
+email

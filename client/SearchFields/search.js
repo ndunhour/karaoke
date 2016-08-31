@@ -63,12 +63,9 @@ Template.search.events({
         // adding 1 to request_count
         var find = collection.findOne({ID:requestSong.ID});
         if(find, {"request_counter" : { "$exists" : true}}){
-            collection.update({_id:find._id}, {
-                $inc: {request_count: 1},}, {
-                upsert: true});
+            Meteor.call('counter', barName, requestSong);
         }else{
-            collection.update({_id:find._id},{$set: {
-            request_count: 1}});
+            Meteor.call('insertCounter', barName, requestSong);
         }
 
         // inform user request has been made

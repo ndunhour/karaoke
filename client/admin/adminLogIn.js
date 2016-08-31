@@ -16,6 +16,7 @@ Template.adminLogIn.events({
         Meteor.loginWithPassword(emailVar, passwordVar, function(err){
             if(err){
                 console.log(err.reason);
+
                 Router.go('/admin');
             }
                 Router.go('/adminDash/' + Meteor.userId());
