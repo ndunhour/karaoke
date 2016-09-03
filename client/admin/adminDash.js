@@ -1,6 +1,7 @@
 Template.adminDash.created = function(){
-    console.log('this', this.data.barName);
     Meteor.subscribe(this.data.barName);
+    Meteor.subscribe('cust');
+    Meteor.subscribe('comments');
 };
 
 Template.adminDash.rendered = function(){
@@ -9,12 +10,18 @@ Template.adminDash.rendered = function(){
 Template.adminDash.helpers({
     playlist: function(){
         var collections = nameToCollection(Template.instance().data.barName);
-        console.log('coll', collections);
         return collections.find();
     },
     requests: function(){
-        console.log('req', Requests.find({barName:Template.instance().data.barName}));
         return Requests.find({barName:Template.instance().data.barName});
+    },
+    comments: function(){
+        var user = Comments.find({});
+        return user;
+    },
+    responses: function(){
+        var response = Comments.find({});
+        return response;
     }
 
 });
@@ -22,7 +29,6 @@ Template.adminDash.helpers({
 Template.adminDash.events({
     'click .logout': function(event){
         event.preventDefault();
-        console.log('click');
         Meteor.logout(function(err){
             if(err){
                 console.log(err.reason);
@@ -42,5 +48,22 @@ Template.adminDash.events({
                 console.log(err.reason);
             }
         });
-    }
+    },
+    'click .js-respond': function(event, template){
+        var date = new Date();
+        Session.set('inputId', event.currentTarget.id);
+        var response = document.getElementById(Session.get('inputId')).value;
+        var respond = {
+            response: response,
+            commentId: event.currentTarget.id,
+            date: time(date),
+        };
+        Meteor.call('response', event.currentTarget.id, respond, function(err, succ){
+            if(err){
+                console.log(err.reason);
+            }
+            Session.set('inputId', "");
+        });
+
+    },
 });

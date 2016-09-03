@@ -1,6 +1,5 @@
 Template.search.created = function(){
     var data = this.data; // return barId and name
-    this.custName = new ReactiveVar();
 };
 
 Template.search.onRendered = function(){
@@ -23,10 +22,7 @@ Template.search.helpers({
         return collection.find({});
     },
     cust: function(){
-        var cust = Cust.findOne({},{sort: {date:-1}});
-        Template.instance().custName.set(cust.fName);
-        Session.set('cust', Template.instance().custName.get());
-        return Cust.findOne({},{sort: {date:-1}});
+        return Cust.findOne({fName: Session.get('cust')},{sort: {date:-1}});
     },
     playlist: function(){
         return Requests.find({barName: Session.get('barName')});
@@ -42,7 +38,8 @@ Template.search.events({
             Title: this.Title,
             ID: this.ID,
             barName: barName,
-            custName: template.custName.get(),
+            custName: Session.get('cust'),
+            custId: Session.get('custId'),
             date: Date(Date.now()),
         };
         var collection = nameToCollection(barName);

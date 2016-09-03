@@ -1,17 +1,15 @@
 <template name="contactDj">
-    {{> companyLogo}}
-    <div>
-        <input type="text" class="comment" placeholder="Contact DJ">
-        <input class="btn btn-primary js-comment" type="button" value="Submit">
-    </div>
+    {{> messages}}
+    {{> input}}
+</template>
 
-    {{#each comments}}
-    <div class="contactDj">
-        <a href="" class="message_profile-pic"></a>
-        <a href="" class="message_username">{{fName}}</a>
-        <span class="message_timestamp">{{date}}</span>
-        <span class="message_star"></span>
-        <span class="message_content">{{comment}}</span>
-    </div>
+<template name="messages">
+    {{#each messages}}
+        <strong>{{name}}:</strong> {{message}}<br>
     {{/each}}
+</template>
+
+<template name="input">
+    <input type="text" id="message" placeholder="Message">
+    <input class="btn btn-primary js-msg" id="{{_id}}" type="button" value="Submit">
 </template>

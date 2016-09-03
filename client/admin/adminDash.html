@@ -2,6 +2,36 @@
     {{> companyLogo}}
     <p>You're logged in.</p>
     <p><a href="#" class="logout">Logout</a></p>
+<!--     {{#each comments}}
+        <div class="comments">
+            <h1>what?</h1>
+            <p>{{fName}} - {{date}}</p><br>
+            <p>{{comment}}</p>
+        </div>
+
+    {{/each}} -->
+    {{> contactDj}}
+
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Song ID</th>
+                    <th>Title</th>
+                    <th>Customer Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each requests}}
+                <tr class="js-tr" id="{{_id}}">
+                    <td>{{ID}}</td>
+                    <td>{{Title}}</td>
+                    <td>{{custName}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 
     <!-- <div>
         <h2>Admin for {{barName}}</h2>
@@ -30,25 +60,5 @@
         </div>
     </div> -->
 
-    <div>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Song ID</th>
-                    <th>Title</th>
-                    <th>Customer Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each requests}}
-                <tr class="js-tr" id="{{_id}}">
-                    <td>{{ID}}</td>
-                    <td>{{Title}}</td>
-                    <td>{{custName}}</td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
 
 </template>

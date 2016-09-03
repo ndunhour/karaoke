@@ -1,7 +1,7 @@
 Meteor.methods({
     // ---- SIGN IN ----
     'signIn': function(reg){
-        return Cust.insert(reg);
+        return Accounts.createUser(reg);
     },
     'deleteSong': function(songId){
         return Requests.remove({_id: songId});
@@ -30,13 +30,17 @@ Meteor.methods({
         return collection.update({ID: requestSong.ID},{$set: {
             request_count: 1}});
     },
-    'comment': function(id, comment){
-        return Cust.update({_id:id},{$push: {comments: comment}});
+    'messages': function(message){
+        console.log('msgServ', message);
+        return Messages.insert(message);
+    },
+    'response': function(id, response){
+        return Comments.update({_id:id}, {$push: {response: response}});
     },
 
     // admin stuff
-    'updateAdmin': function(barName){
-        return Meteor.users.update({_id:this.userId},{$set: {barName: barName}});
+    'updateAdmin': function(profile){
+        return Meteor.users.update({_id:this.userId},{$set: {profile: profile}});
     },
     'createAdmin': function(admin){
         return Accounts.createUser(admin);

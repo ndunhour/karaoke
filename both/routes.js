@@ -23,7 +23,8 @@ Router.route('adminDash', {
     waitOn: function() {
         return [
             Meteor.subscribe('admin', this.params._id),
-            Meteor.subscribe('requests')
+            Meteor.subscribe('requests'),
+            Meteor.subscribe('messages')
         ];
     },
     data: function(){
@@ -32,20 +33,21 @@ Router.route('adminDash', {
 });
 Router.route('adminReg', {
     path: '/adminReg/',
-    template: 'adminReg',
+    template: 'registration',
     layoutTemplate: null,
-    waitOn: function() {
-        return [
-            Meteor.subscribe('admin', this.params._id)
-            ];
-    },
     data: function(){
-        // return Meteor.users.findOne({_id: this.params._id});
         return {};
-
     }
 });
 // --------- customer -----------//
+Router.route('registration', {
+    path:'/registration',
+    template: 'registration',
+    layoutTemplate: null,
+    data: function(){
+        return {};
+    }
+});
 
 
 Router.route('signIn', {
@@ -59,14 +61,6 @@ Router.route('signIn', {
     },
     data: function(){
         return Bar.find({});
-    }
-});
-Router.route('signUp', {
-    path:'/signUp',
-    template: 'signUp',
-    layoutTemplate: null,
-    data: function(){
-        return {};
     }
 });
 Router.route('search', {

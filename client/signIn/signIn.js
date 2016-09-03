@@ -28,10 +28,16 @@ Template.signIn.events({
             comments:[]
         };
 
-        Meteor.call('signIn', reg, function(err){
+        Session.set('cust', $('.fName').val());
+        Session.set('barName', template._barName.get());
+
+        Meteor.call('signIn', reg, function(err, succ){
             if(err){
                 console.log(err.reason);
+            } else {
+                Meteor.loginWithPassword
             }
+            Session.set('custId', succ);
         });
         Meteor._reload.reload();
         Router.go('/search/' + template._barName.get());
@@ -43,6 +49,7 @@ Template.signIn.events({
     },
     'click .admin': function(event, template){
         Router.go('/admin');
-    }
+    },
+
 
 });
