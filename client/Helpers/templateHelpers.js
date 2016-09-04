@@ -9,3 +9,16 @@ nameToCollection = function(barName) {
     var root = Meteor.isClient ? window : global;
     return root[barName];
 };
+
+errMsg = function(err){
+    if(err.reason == "Incorrect password"){
+        return $(".errMsg").text("Incorrect password");
+    }
+    if(err.reason == "Email already exists."){
+        return $(".errMsg").text("Email already exists");
+    }
+    if(err.reason == "User not found"){
+        return $(".errMsg").text("User not found");
+    }
+    console.log(err.reason);
+};

@@ -1,64 +1,7 @@
+<template name="adminReg">
+    {{> registration}}
+</template>
+
 <template name="adminDash">
-    {{> companyLogo}}
-    <p>You're logged in.</p>
-    <p><a href="#" class="logout">Logout</a></p>
-<!--     {{#each comments}}
-        <div class="comments">
-            <h1>what?</h1>
-            <p>{{fName}} - {{date}}</p><br>
-            <p>{{comment}}</p>
-        </div>
-
-    {{/each}} -->
-    {{> contactDj}}
-
-    <div>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Song ID</th>
-                    <th>Title</th>
-                    <th>Customer Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each requests}}
-                <tr class="js-tr" id="{{_id}}">
-                    <td>{{ID}}</td>
-                    <td>{{Title}}</td>
-                    <td>{{custName}}</td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
-
-    <!-- <div>
-        <h2>Admin for {{barName}}</h2>
-    </div>
-    <div class="createBar">
-        <input type="text" class="barName" placeholder="Establishment Name">
-        <button class="js-createBar" >Create Bar</button>
-    </div>
-
-    <div class="updateSongs">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{listBars}}
-            <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></button>
-            <div class="dropdown-menu listBars" aria-labelledby="dropdownMenu1">
-                {{#each bars}}
-                    <p class="dropdown-item clickable" id={{barName}}>{{barName}}</p>
-                {{/each}}
-            </div>
-        </div>
-        <div>
-            <input type="text" class="title" placeholder="Title">
-            <input type="text" class="artist" placeholder="Artist">
-            <input type="text" class="songId" placeholder="Song Id">
-            <button class="js-newSong" >Enter New Song</button>
-        </div>
-    </div> -->
-
-
+    <h2>Admin Dashboard</h2>
 </template>

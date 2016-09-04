@@ -4,6 +4,7 @@ Template.signIn.created = function(){
 };
 
 Template.signIn.rendered = function(){
+
 };
 
 Template.signIn.helpers({
@@ -17,30 +18,22 @@ Template.signIn.helpers({
 
 Template.signIn.events({
     'click .js-signIn': function(event, template){
+        var emailVar = $('.signInEmail').val();
+        var passwordVar = $('.signInPassword').val();
+
         var signIn = {
-            fName: $('.fName').val(),
-        };
-        var reg = {
-            barId: template._barId.get(),
-            barName: template._barName.get(),
-            fName: $('.fName').val(),
-            date: Date(Date.now()),
-            comments:[]
+            email: emailVar,
+            password: passwordVar,
+            barName: template._barName.get()
         };
 
-        Session.set('cust', $('.fName').val());
-        Session.set('barName', template._barName.get());
-
-        Meteor.call('signIn', reg, function(err, succ){
+        Meteor.loginWithPassword(signIn.email, signIn.password, function(err){
             if(err){
-                console.log(err.reason);
+                errMsg(err);
             } else {
-                Meteor.loginWithPassword
+                Router.go('/search/' + template._barName.get());
             }
-            Session.set('custId', succ);
         });
-        Meteor._reload.reload();
-        Router.go('/search/' + template._barName.get());
     },
     'click .name p': function(event, template){
         template._barName.set(event.currentTarget.textContent);

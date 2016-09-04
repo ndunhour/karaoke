@@ -21,6 +21,9 @@ textarea{
 input{
     padding: 10px;
 }
+input.error{
+    background-color:rgb(255, 231, 231);
+}
 .row{
     margin-bottom: 15px;
 }

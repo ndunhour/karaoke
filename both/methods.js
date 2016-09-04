@@ -1,7 +1,10 @@
 Meteor.methods({
     // ---- SIGN IN ----
-    'signIn': function(reg){
+    'register': function(reg){
         return Accounts.createUser(reg);
+    },
+    'updateUser': function(profile){
+        return Meteor.users.update({_id:this.userId},{$set: {profile: profile}});
     },
     'deleteSong': function(songId){
         return Requests.remove({_id: songId});
@@ -39,12 +42,6 @@ Meteor.methods({
     },
 
     // admin stuff
-    'updateAdmin': function(profile){
-        return Meteor.users.update({_id:this.userId},{$set: {profile: profile}});
-    },
-    'createAdmin': function(admin){
-        return Accounts.createUser(admin);
-    },
     'newBar': function(bar){
         return Bar.insert(bar);
     },
