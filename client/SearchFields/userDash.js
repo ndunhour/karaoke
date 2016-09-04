@@ -1,14 +1,16 @@
-Template.search.created = function(){
+Template.userDash.created = function(){
+    Meteor.subscribe(Session.get('barName'));
     var data = this.data; // return barId and name
 };
 
-Template.search.onRendered = function(){
+Template.userDash.onRendered = function(){
     $('.reactive-table-input').focus();
 };
 
-Template.search.helpers({
+Template.userDash.helpers({
     settings: function(){
-        var collection = nameToCollection(Template.instance().data.collection.name);
+        var collection = nameToCollection(Session.get('barName'));
+        console.log('collection', collection);
         return {
             collection: collection.find({}),
             fields:['ID', 'Title', 'Artist'],
@@ -18,7 +20,7 @@ Template.search.helpers({
         };
     },
     songs: function(){
-        var collection = nameToCollection(Template.instance().data.collection.name);
+        var collection = nameToCollection(Session.get('barName'));
         return collection.find({});
     },
     cust: function(){
@@ -30,9 +32,9 @@ Template.search.helpers({
 
 });
 
-Template.search.events({
+Template.userDash.events({
     'click .reactive-table tbody tr': function(event, template){
-        var barName = template.data.collection.name;
+        var barName = Session.get('barName');
         var requestSong = {
             Artist: this.Artist,
             Title: this.Title,

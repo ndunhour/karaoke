@@ -5,7 +5,11 @@ nameToCollection = function(barName) {
 
 
 Template.playlist.created = function(){
-    Session.set('barName', this.data.collection.name);
+    console.log('this', this);
+    console.log('user', Meteor.users.findOne);
+    // if(this.data.profile.admin === true){
+    //     Session.set('barName', this.data.profile.barName);
+    // }
 };
 
 Template.playlist.rendered = function(){

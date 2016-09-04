@@ -1,15 +1,15 @@
 Router.configure({
     layoutTemplate: 'baselayout'
 });
-Router.route('admin', {
-    path: '/admin',
-    template: 'admin',
+Router.route('adminSignIn', {
+    path: '/adminSignIn',
+    template: 'adminSignIn',
     layoutTemplate:null,
-    // waitOn: function(){
-    //     return [
-    //         Meteor.subscribe('requests')
-    //     ];
-    // },
+    waitOn: function(){
+        return [
+            Meteor.subscribe('bar')
+        ];
+    },
     data: function(){
         // return Meteor.users.findOne({_id: this.params._id});
         return {};
@@ -35,6 +35,9 @@ Router.route('adminReg', {
     path: '/adminReg/',
     template: 'registration',
     layoutTemplate: null,
+    waitOn: function(){
+        Meteor.subscribe('bar');
+    },
     data: function(){
         return {};
     }
@@ -60,31 +63,21 @@ Router.route('signIn', {
             ];
     },
     data: function(){
-        return Bar.find({});
+        return {};
     }
 });
-Router.route('search', {
-    path: '/search/:_id',
-    template: 'search',
-    waitOn: function(){
-        var barName = this.params._id;
+Router.route('userDash', {
+    path: '/userDash/:_id',
+    template: 'userDash',
+    layoutTemplate: null,
+    waitOn: function() {
         return [
-            Meteor.subscribe(barName),
-            Meteor.subscribe('cust'),
-            // Meteor.subscribe('requests' + barName),
-            Meteor.subscribe('requests')
-
-            ];
+            Meteor.subscribe('requests'),
+            Meteor.subscribe('messages')
+        ];
     },
     data: function(){
-        var barName = this.params._id;
-        var nameToCollection = function(barName) {
-        var root = Meteor.isClient ? window : global;
-            return root[barName];
-        };
-
-        var collection = nameToCollection(barName);
-        return collection.find({});
+        return Meteor.users.findOne({_id: this.params._id});
     }
 });
 Router.route('contactDj', {

@@ -11,7 +11,6 @@ Template.contactDj.rendered = function(){
 Template.contactDj.helpers({
     comments: function(){
         var user = Cust.findOne({fName: Session.get('cust')});
-
         return user.comments;
     }
 

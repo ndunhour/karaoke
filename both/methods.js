@@ -34,7 +34,6 @@ Meteor.methods({
             request_count: 1}});
     },
     'messages': function(message){
-        console.log('msgServ', message);
         return Messages.insert(message);
     },
     'response': function(id, response){

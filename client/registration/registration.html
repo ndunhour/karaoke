@@ -1,12 +1,25 @@
 <template name="registration">
     <h2>Registration Page</h2>
     <form class="registration">
-        <input type="text" name="fName" placeholder="First Name">
-        <input type="text" name="lName" placeholder="Last Name">
-        <input type="text" name="userName" placeholder="User Name">
-        <input type="email" name="regEmail" placeholder="Email" class="regEmail" required>
-        <input type="password" name="regPassword" placeholder="Password" class="error" required>
-        <input type="text" name="barName" placeholder="Establishment Name">
+        <input type="text" class="fName" placeholder="First Name">
+        <input type="text" class="lName" placeholder="Last Name">
+        <input type="text" class="userName" placeholder="User Name">
+        <input type="email" class="regEmail" placeholder="Email" required>
+        <input type="password" class="regPassword" placeholder="Password" required>
+        <!-- <input type="text" name="barName" placeholder="Establishment Name"> -->
+
+        <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" required>
+                {{nameOfBar}}
+                <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></button>
+                <div class="dropdown-menu name" aria-labelledby="dropdownMenu1">
+                    {{#each list}}
+                        <p class="dropdown-item clickable" id={{barName}}>{{barName}}</p>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
         <p class="errMsg"></p>
         <input type="submit" value="Register">
     </form>
