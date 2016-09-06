@@ -1,15 +1,21 @@
 <template name="companyLogo">
-    <div class="row noMarginBottom companyLogo">
-        <div class="col-xs-4 col-sm-4 col-md-4">
-            <button type="button" class="btn button-success js-logOut" id="helpButton">Log Out</button>
+    <div class="companyLogo">
+        <div>
+            {{#if signIn}}
+            <h1 class="title">Karaoke Central</h1>
+            {{else}}
+            <h1 class="bar">{{nameOfBar}}</h1>
+            {{/if}}
         </div>
-        <div class="col-xs-4 col-sm-4 col-md-4">
-            <h1>{{cust.barName}}</h1>
-        </div>
-        <a href="/contactDj">
-            <div class="col-xs-4 col-sm-4 col-md-4">
-                <button type="button" class="btn button-success js-contactHelp" id="helpButton">Contact Front Desk</button>
-            </div>
-        </a>
+
+
+        <ul class="nav nav-tabs" style="display:{{navBar}}">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><a href="/playist">Play List</a></li>
+            <li role="presentation"><a href="/topTen">Most Requested</a></li>
+            <li role="presentation"><a href="/contactDj">Contact DJ</a></li>
+            <li role="presentation"><a href="#" class="js-logOut">Log Out</a></li>
+        </ul>
+
     </div>
 </template>

@@ -1,9 +1,15 @@
 <template name="userDash">
     {{> companyLogo}}
+
+
+    {{#if currentUser}}
+        <p>hi</p>
+    {{/if}}
+
     <div class="row">
         <div class="col-md-12">
 
-            <p> Welcome <strong>{{profile.fName}}</strong> to <strong>{{profile.barName}}</strong>, we hope you enjoy yourself</p>
+            <p> Welcome <strong>{{profile.fName}}</strong> to <strong>{{nameOfBar}}</strong>, we hope you enjoy yourself</p>
         </div>
     </div>
 

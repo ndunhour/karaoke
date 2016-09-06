@@ -47,8 +47,13 @@ Router.route('registration', {
     path:'/registration',
     template: 'registration',
     layoutTemplate: null,
+    waitOn: function(){
+        return [
+            Meteor.subscribe('bar'),
+            ];
+    },
     data: function(){
-        return {};
+        return Bar.find({});
     }
 });
 

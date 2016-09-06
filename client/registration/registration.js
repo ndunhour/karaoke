@@ -1,6 +1,5 @@
 Template.registration.created = function(){
     this._barName = new ReactiveVar('Establishment Name');
-    this._barId = new ReactiveVar();
 };
 
 Template.registration.rendered = function(){
@@ -12,8 +11,16 @@ Template.registration.helpers({
         return Bar.find({});
     },
     nameOfBar: function(){
-        return Template.instance()._barName.get();
+        return Session.get('barName');
+    },
+    admin: function(){
+        if(window.location.pathname ==="/adminSignIn"){
+            return "none";
+        }else {
+            return "block";
+        }
     }
+
 });
 
 Template.registration.events({
@@ -21,12 +28,13 @@ Template.registration.events({
         event.preventDefault();
         var emailVar = $('.regEmail').val();
         var passwordVar = $('.regPassword').val();
-        var barName = template._barName.get();
+        var barName = null;
 
         var admin = false;
         var currentLocation = window.location;
         if(currentLocation.pathname === "/adminReg"){
             admin = true;
+            barName = Session.get('barName');
         }
         var reg = {
             email: emailVar,
@@ -39,7 +47,6 @@ Template.registration.events({
             lName: $('.lName').val(),
             admin: admin
         };
-
         Meteor.call('register', reg, function(err){
             if(err){
                 errMsg(err);
@@ -49,12 +56,10 @@ Template.registration.events({
                         errMsg(err);
                     } else {
                         Meteor.call('updateUser', profile, function(err){
-                            Session.set('barName', barName);
                             if(err){
                                 errMsg(err);
                             }
                             if(admin === true){
-                                console.log('admin');
                                 Router.go('/adminDash/' + Meteor.userId());
                             } else{
                                 Router.go('/userDash/' + Meteor.userId());
@@ -67,9 +72,9 @@ Template.registration.events({
         });
     },
     'click .name p': function(event, template){
-        template._barName.set(event.currentTarget.textContent);
-        var barId = Bar.findOne({barName: template._barName.get()});
-        template._barId.set(barId._id);
+        Session.set('barName', event.currentTarget.id);
+        template._barName.set(event.currentTarget.id);
+        var barId = Bar.findOne({barName: Session.get('barName')});
     },
     'click .admin': function(event, template){
         Router.go('/admin');

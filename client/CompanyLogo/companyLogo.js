@@ -8,14 +8,28 @@ Template.companyLogo.helpers({
     cust: function(){
         var cust = Cust.findOne({},{sort: {date:-1}});
         return Cust.findOne({},{sort: {date:-1}});
+    },
+    nameOfBar: function(){
+        return Session.get('barName');
+    },
+    signIn: function(){
+        if(window.location.pathname === "/"){
+            return true;
+        }else {
+            return false;
+        }
+    },
+    navBar: function(){
+        if(window.location.pathname === "/"){
+            return 'none';
+        }else {
+            return 'block';
+        }
     }
 
 });
 
 Template.companyLogo.events({
-    'click .js-contactHelp': function(event, template){
-        // Router.go('/contactDj');
-    },
     'click .js-logOut': function(event, template){
         event.preventDefault();
         Router.go('/');

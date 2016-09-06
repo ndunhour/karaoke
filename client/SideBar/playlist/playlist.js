@@ -5,8 +5,6 @@ nameToCollection = function(barName) {
 
 
 Template.playlist.created = function(){
-    console.log('this', this);
-    console.log('user', Meteor.users.findOne);
     // if(this.data.profile.admin === true){
     //     Session.set('barName', this.data.profile.barName);
     // }

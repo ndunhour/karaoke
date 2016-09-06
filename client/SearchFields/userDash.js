@@ -10,7 +10,6 @@ Template.userDash.onRendered = function(){
 Template.userDash.helpers({
     settings: function(){
         var collection = nameToCollection(Session.get('barName'));
-        console.log('collection', collection);
         return {
             collection: collection.find({}),
             fields:['ID', 'Title', 'Artist'],
@@ -29,7 +28,14 @@ Template.userDash.helpers({
     playlist: function(){
         return Requests.find({barName: Session.get('barName')});
     },
-
+    nameOfBar: function(){
+        return Session.get('barName');
+    },
+    currentUser: function(){
+        if(Meteor.user()){
+            return true;
+        }
+    }
 });
 
 Template.userDash.events({

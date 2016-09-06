@@ -26,12 +26,11 @@ Template.signIn.events({
             password: passwordVar,
             barName: template._barName.get()
         };
-        Session.set('barName', template._barName.get());
         Meteor.loginWithPassword(signIn.email, signIn.password, function(err, succ){
             if(err){
-                // errMsg(err);
-                console.log(err.reason);
+                errMsg(err);
             } else {
+                Session.set('barName', template._barName.get());
                 Router.go('/userDash/' + Meteor.userId());
             }
         });

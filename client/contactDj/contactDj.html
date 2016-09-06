@@ -1,11 +1,12 @@
 <template name="contactDj">
+    {{> companyLogo}}
     {{> messages}}
     {{> input}}
 </template>
 
 <template name="messages">
     {{#each messages}}
-        <strong>{{profile.fName}}:</strong> {{message}}<br>
+        <strong>{{fName}} {{date}}:</strong> {{message}}<br>
     {{/each}}
 </template>
 
