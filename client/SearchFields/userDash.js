@@ -22,20 +22,9 @@ Template.userDash.helpers({
         var collection = nameToCollection(Session.get('barName'));
         return collection.find({});
     },
-    cust: function(){
-        return Cust.findOne({fName: Session.get('cust')},{sort: {date:-1}});
-    },
-    playlist: function(){
-        return Requests.find({barName: Session.get('barName')});
-    },
     nameOfBar: function(){
         return Session.get('barName');
     },
-    currentUser: function(){
-        if(Meteor.user()){
-            return true;
-        }
-    }
 });
 
 Template.userDash.events({
@@ -46,8 +35,8 @@ Template.userDash.events({
             Title: this.Title,
             ID: this.ID,
             barName: barName,
-            custName: Session.get('cust'),
-            custId: Session.get('custId'),
+            custName: Meteor.user().profile.userName,
+            custId: Meteor.userId(),
             date: Date(Date.now()),
         };
         var collection = nameToCollection(barName);

@@ -90,16 +90,24 @@ Router.route('contactDj', {
     template: 'contactDj',
     layoutTemplate:null,
     waitOn: function(){
-        // var barName = this.params._id;
         return [
-            // Meteor.subscribe(barName),
-            Meteor.subscribe('cust'),
-            // Meteor.subscribe('requests' + barName),
             Meteor.subscribe('requests')
-
             ];
-    },
-    data: function(){
-        return Cust.findOne({});
+    }
+});
+Router.route('playlist', {
+    path: '/playlist',
+    template: 'playlist',
+    layoutTemplate:null,
+    waitOn: function(){
+        return Meteor.subscribe('requests');
+    }
+});
+Router.route('topTen', {
+    path: '/topTen',
+    template: 'topTen',
+    layoutTemplate:null,
+    waitOn: function(){
+        return Meteor.subscribe('requests');
     }
 });

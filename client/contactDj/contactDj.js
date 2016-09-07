@@ -1,6 +1,6 @@
 Template.contactDj.created = function(){
-    Meteor.subscribe('cust');
     Meteor.subscribe('messages');
+
 };
 
 Template.contactDj.rendered = function(){
@@ -8,36 +8,16 @@ Template.contactDj.rendered = function(){
 };
 
 Template.contactDj.helpers({
-
-});
-
-Template.contactDj.events({
-    // 'click .js-comment': function(event, template){
-    //     var date = new Date();
-    //     var comment = {
-    //         fName: Session.get('cust'),
-    //         custId: Session.get('custId'),
-    //         barName: Session.get('barName'),
-    //         comment: $('.comment').val(),
-    //         date: time(date)
-    //     };
-    //     Meteor.call('comment',comment, function(err,succ){
-    //         if(err){
-    //             console.log(err.reason);
-    //         }
-    //     });
-    //     $('.comment').val("");
-    // }
-});
-
-Template.messages.helpers({
     messages: function() {
         var barName = Session.get('barName');
         return Messages.find({barName: barName}, {$sort: -1});
+    },
+    isAdmin: function(admin){
+        return admin === true;
     }
 });
 
-Template.input.events({
+Template.contactDj.events({
     'click input.js-msg': function(event) {
         var name;
         if (Meteor.user()){
@@ -52,8 +32,10 @@ Template.input.events({
             message: message,
             fName: name,
             date: time(date),
-            barName: Session.get('barName')
+            barName: Session.get('barName'),
+            admin: Meteor.user().profile.admin
         };
+        console.log('msg', messages);
         Meteor.call('messages', messages, function(err){
             if(err){
                 console.log(err.reason);
@@ -61,6 +43,5 @@ Template.input.events({
         });
 
         $('#message').val("");
-
-    },
+    }
 });

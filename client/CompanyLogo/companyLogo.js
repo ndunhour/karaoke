@@ -25,6 +25,9 @@ Template.companyLogo.helpers({
         }else {
             return 'block';
         }
+    },
+    home: function(){
+        return "/userDash/" + Meteor.userId();
     }
 
 });
@@ -33,5 +36,5 @@ Template.companyLogo.events({
     'click .js-logOut': function(event, template){
         event.preventDefault();
         Router.go('/');
-    }
+    },
 });

@@ -1,0 +1,19 @@
+<template name="topTen">
+    {{> companyLogo}}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <h3>Top 10 {{nameOfBar}} Requests</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="topTen">
+                <ol>
+                {{#each topTen}}
+                    <li class={{_id}}>{{Title}} {{request_count}}</li>
+                {{/each}}
+                </ol >
+            </div>
+        </div>
+    </div>
+</template>

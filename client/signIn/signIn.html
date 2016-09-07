@@ -1,31 +1,32 @@
 <template name="signIn">
     {{> companyLogo}}
 
-    <div class="row signIn">
-        <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
-            <input type="email" class="signInEmail" placeholder="Email" required>
-            <input type="password" class="signInPassword" placeholder="Password" required>
-            <p class="errMsg"></p>
-        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+                <input type="email" class="signInEmail" placeholder="Email" required>
+                <input type="password" class="signInPassword" placeholder="Password" required>
+                <p class="errMsg"></p>
+            </div>
 
-        <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{nameOfBar}}
-                <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></button>
-                <div class="dropdown-menu name" aria-labelledby="dropdownMenu1">
-                    {{#each list}}
-                        <p class="dropdown-item clickable" id={{barName}}>{{barName}}</p>
-                    {{/each}}
+            <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{nameOfBar}}
+                    <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></button>
+                    <div class="dropdown-menu name" aria-labelledby="dropdownMenu1">
+                        {{#each list}}
+                            <p class="dropdown-item clickable" id={{barName}}>{{barName}}</p>
+                        {{/each}}
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
-            <input type="submit" value="Sign In" class='js-signIn'>
+            <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+                <input type="submit" value="Sign In" class='js-signIn'>
+            </div>
         </div>
     </div>
-
     <a href="/registration">Register</a>
     <a href="/adminSignIn">Admin</a>
 

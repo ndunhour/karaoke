@@ -1,16 +1,33 @@
 <template name="contactDj">
     {{> companyLogo}}
-    {{> messages}}
-    {{> input}}
-</template>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <h3>Contact Admin</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="contactDj">
+                <ul class="list-group">
+                    {{#each messages}}
+                        <li class="list-group-item clearfix">
+                            {{#if isAdmin admin}}
+                            <span class="pull-right">{{message}}: <strong>{{fName}}</strong></span>
+                            {{else}}
+                            <span class="pull-left"><strong>{{fName}}</strong>:  {{message}}</span>
+                            {{/if}}
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
 
-<template name="messages">
-    {{#each messages}}
-        <strong>{{fName}} {{date}}:</strong> {{message}}<br>
-    {{/each}}
-</template>
 
-<template name="input">
-    <input type="text" id="message" placeholder="Message">
-    <input class="btn btn-primary js-msg" id="{{_id}}" type="button" value="Submit">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <input type="text" id="message" placeholder="Message">
+                <input class="btn btn-primary js-msg" id="{{_id}}" type="button" value="Submit">
+            </div>
+        </div>
+    </div>
 </template>
