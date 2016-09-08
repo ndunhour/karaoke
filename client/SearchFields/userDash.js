@@ -29,6 +29,7 @@ Template.userDash.helpers({
 
 Template.userDash.events({
     'click .reactive-table tbody tr': function(event, template){
+        event.preventDefault();
         var barName = Session.get('barName');
         var requestSong = {
             Artist: this.Artist,
@@ -61,7 +62,6 @@ Template.userDash.events({
         $('.request').css({'display': 'block'});
         $('.msg').text("Your request to sing " + modal.Title + " by " + modal.Artist + " will be played shortly").css({'background': 'red'});
         $('.main').css({'display': 'none'});
-
     },
     'click .js-close': function(event, template){
         $('.request').css({'display': 'none'});
