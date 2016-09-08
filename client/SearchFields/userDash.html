@@ -1,0 +1,28 @@
+<template name="userDash">
+    {{> companyLogo}}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h3><strong>{{profile.userName}}</strong>, Welcome to <strong>{{nameOfBar}}</strong>, we hope you enjoy yourself</h3>
+            </div>
+        </div>
+
+        <div class="main row">
+            <div class="col-md-12">
+                <h4>Search Songs</h4>
+            </div>
+            <div class="col-md-12">
+                {{> reactiveTable settings=settings}}
+            </div>
+        </div>
+
+        <div class="request row" style="display:none">
+            <div class="col-md-12">
+                <p class='msg'></p>
+                <button class='js-close'>Close</button>
+            </div>
+        </div>
+    </div>
+</template>
+
+

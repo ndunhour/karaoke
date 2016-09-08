@@ -1,0 +1,27 @@
+body, html{
+    background-color: gray;
+    font-size: 18px;
+}
+.wrapper{
+    background-color: pink;
+}
+.container-fluid{
+    background-color: #D4E5F1;
+    margin: 10px;
+}
+input{
+    padding: 10px;
+    width: 100%
+}
+input.error{
+    background-color:rgb(255, 231, 231);
+}
+/*companyLogo*/
+.companyLogo{
+    background-color: red;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+button {
+    width: 100%;
+}

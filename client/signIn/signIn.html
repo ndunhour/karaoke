@@ -1,9 +1,34 @@
 <template name="signIn">
-    <div class="row createParty">
-        <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
-            <div class="row"><h2>Room #: </h2> <input type="text" placeholder="Room #" class="room"></div>
-            <div class="row"><h2>Party Name: </h2> <input type="text" placeholder="Party Name" class="party"></div>
-            <div class="row"><button type="button" class="btn btn-success js-createParty">Create Party</button></div>
+    {{> signInHeader}}
+
+    <div class="container-fluid">
+        <div class="row">
+        <form>
+            <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+                <input type="email" class="signInEmail" placeholder="Email" required>
+                <input type="password" class="signInPassword" placeholder="Password" required>
+                <p class="errMsg"></p>
+            </div>
+
+            <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" style="text-align:center; padding-bottom: 10px">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" required>
+                        <span class="pull-left">{{nameOfBar}}</span>
+                        <span class="glyphicon glyphicon-triangle-bottom pull-right" aria-hidden="true"></span></button>
+                    <div class="dropdown-menu name" aria-labelledby="dropdownMenu1">
+                        {{#each list}}
+                            <p class="dropdown-item clickable" id={{barName}}>{{barName}}</p>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" style="text-align:center;">
+                <input type="submit" value="Sign In" class='js-signIn'>
+                <a href="/registration">Register</a>
+            </div>
+        </form>
         </div>
     </div>
+
 </template>

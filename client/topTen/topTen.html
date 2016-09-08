@@ -1,0 +1,22 @@
+<template name="topTen">
+    {{> companyLogo}}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <h3>Top 10 {{nameOfBar}} Requests</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="topTen">
+                <ul class="list-group">
+                    {{#each topTen}}
+                        <li class="{{_id}} list-group-item clearfix">
+                            <span class="pull-left"><strong>{{Title}}</strong> - {{request_count}}</span>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
+

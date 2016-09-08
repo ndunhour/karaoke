@@ -25,10 +25,9 @@ tr:nth-child(even) {
 .searchBtn{
     width: 100%;
 }
-
-/*.found{
-    display: inline;
+.reactive-table-input:focus{
+    background-color: yellow;
 }
-.available{
-    display: none;
-}*/
+.name{
+    padding: 5px 10px;
+}

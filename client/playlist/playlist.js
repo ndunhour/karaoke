@@ -1,13 +1,13 @@
 Template.playlist.created = function(){
-    Meteor.subscribe('playlist');
+    Meteor.subscribe(Session.get('barName'));
 };
 
 Template.playlist.rendered = function(){
 };
 
 Template.playlist.helpers({
-    playlist: function(){
-        return Playlist.find({}).fetch();
+    'playlist': function(){
+        return Requests.find();
     }
 });
 
