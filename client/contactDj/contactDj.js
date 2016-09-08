@@ -21,7 +21,7 @@ Template.contactDj.events({
     'click input.js-msg': function(event) {
         var name;
         if (Meteor.user()){
-            name = Meteor.user().profile.fName;
+            name = Meteor.user().profile.userName;
         }else{
             name = 'Anonymous';
         }
@@ -30,12 +30,11 @@ Template.contactDj.events({
 
         var messages = {
             message: message,
-            fName: name,
+            userName: name,
             date: time(date),
             barName: Session.get('barName'),
             admin: Meteor.user().profile.admin
         };
-        console.log('msg', messages);
         Meteor.call('messages', messages, function(err){
             if(err){
                 console.log(err.reason);

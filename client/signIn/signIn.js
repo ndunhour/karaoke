@@ -17,7 +17,8 @@ Template.signIn.helpers({
 });
 
 Template.signIn.events({
-    'click .js-signIn': function(event, template){
+    'submit form': function(event, template){
+        event.preventDefault();
         var emailVar = $('.signInEmail').val();
         var passwordVar = $('.signInPassword').val();
 
@@ -29,9 +30,14 @@ Template.signIn.events({
         Meteor.loginWithPassword(signIn.email, signIn.password, function(err, succ){
             if(err){
                 errMsg(err);
-            } else {
+            }else {
                 Session.set('barName', template._barName.get());
-                Router.go('/userDash/' + Meteor.userId());
+                if(Meteor.user().profile.admin){
+                    Router.go('/adminDash/' + Meteor.userId());
+                }else{
+                    Router.go('/userDash/' + Meteor.userId());
+                }
+
             }
         });
     },
@@ -39,10 +45,7 @@ Template.signIn.events({
         template._barName.set(event.currentTarget.textContent);
         var barId = Bar.findOne({barName: template._barName.get()});
         template._barId.set(barId._id);
-    },
-    'click .admin': function(event, template){
-        Router.go('/admin');
-    },
+    }
 
 
 });

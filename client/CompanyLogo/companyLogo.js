@@ -35,6 +35,7 @@ Template.companyLogo.helpers({
 Template.companyLogo.events({
     'click .js-logOut': function(event, template){
         event.preventDefault();
+        Meteor.logout();
         Router.go('/');
     },
 });

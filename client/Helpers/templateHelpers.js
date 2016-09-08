@@ -20,5 +20,8 @@ errMsg = function(err){
     if(err.reason == "User not found"){
         return $(".errMsg").text("User not found");
     }
+    if(err.reason == "Need to set a username or email"){
+        return $(".errMsg").text("Need to set a username or email");
+    }
     console.log(err.reason);
 };

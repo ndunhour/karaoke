@@ -9,16 +9,20 @@
 
         <div class="row">
             <div class="playlist">
-                <ol>
+                <ul class="list-group">
                     {{#each playlist}}
-                        <li class="{{_id}}"><strong>{{Title}}</strong> sung by <strong>{{custName}}</strong></li>
+                        <li class="{{_id}} list-group-item clearfix">
+                            <span class="pull-left"><strong>{{Title}}</strong> sung by <strong>{{custName}}</strong></span>
+                        </li>
                     {{/each}}
-                </ol>
+                </ul>
             </div>
         </div>
     </div>
 
-<!--     <div class="modal fade" id="songModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+
+    <div class="modal fade" id="songModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -38,5 +42,5 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 </template>

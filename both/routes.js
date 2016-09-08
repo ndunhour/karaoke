@@ -3,7 +3,7 @@ Router.configure({
 });
 Router.route('adminSignIn', {
     path: '/adminSignIn',
-    template: 'adminSignIn',
+    template: 'signIn',
     layoutTemplate:null,
     waitOn: function(){
         return [
@@ -18,17 +18,16 @@ Router.route('adminSignIn', {
 });
 Router.route('adminDash', {
     path: '/adminDash/:_id',
-    template: 'adminDash',
+    template: 'userDash',
     layoutTemplate: null,
     waitOn: function() {
         return [
-            Meteor.subscribe('admin', this.params._id),
             Meteor.subscribe('requests'),
             Meteor.subscribe('messages')
         ];
     },
     data: function(){
-        return Meteor.users.findOne({_id: this.params._id});
+        return Meteor.users.findOne({_id:this.params._id});
     }
 });
 Router.route('adminReg', {
@@ -53,7 +52,7 @@ Router.route('registration', {
             ];
     },
     data: function(){
-        return Bar.find({});
+        return {};
     }
 });
 

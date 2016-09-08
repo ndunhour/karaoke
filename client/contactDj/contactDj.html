@@ -12,9 +12,9 @@
                     {{#each messages}}
                         <li class="list-group-item clearfix">
                             {{#if isAdmin admin}}
-                            <span class="pull-right">{{message}}: <strong>{{fName}}</strong></span>
+                            <span class="pull-right">{{message}}: <strong>{{userName}}</strong></span>
                             {{else}}
-                            <span class="pull-left"><strong>{{fName}}</strong>:  {{message}}</span>
+                            <span class="pull-left"><strong>{{userName}}</strong>:  {{message}}</span>
                             {{/if}}
                         </li>
                     {{/each}}

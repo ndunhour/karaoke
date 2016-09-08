@@ -11,15 +11,36 @@ Template.registration.helpers({
         return Bar.find({});
     },
     nameOfBar: function(){
-        return Session.get('barName');
+        return Template.instance()._barName.get();
     },
     admin: function(){
-        if(window.location.pathname ==="/adminSignIn"){
+        if(Router.current().route._path ==="/registration"){
             return "none";
-        }else {
+        }else{
             return "block";
         }
-    }
+    },
+    userReg: function(){
+        if(Router.current().route._path ==="/registration"){
+            return "Admin";
+        }else{
+            return "User";
+        }
+    },
+    path: function(){
+        if(Router.current().route._path ==="/registration"){
+            return "/adminReg";
+        }else{
+            return "/registration";
+        }
+    },
+    display: function(){
+        if(Router.current().route._path ==="/registration"){
+            return "User";
+        }else{
+            return "Admin";
+        }
+    },
 
 });
 
@@ -32,7 +53,7 @@ Template.registration.events({
 
         var admin = false;
         var currentLocation = window.location;
-        if(currentLocation.pathname === "/adminReg"){
+        if(currentLocation.pathname === "/adminReg" && $('#adminPassword').val() === "tk091413"){
             admin = true;
             barName = Session.get('barName');
         }
@@ -47,36 +68,59 @@ Template.registration.events({
             lName: $('.lName').val(),
             admin: admin
         };
-        Meteor.call('register', reg, function(err){
-            if(err){
-                errMsg(err);
-            } else {
-                Meteor.loginWithPassword(reg.email, reg.password, function(err){
-                    if(err){
-                        errMsg(err);
-                    } else {
-                        Meteor.call('updateUser', profile, function(err){
-                            if(err){
-                                errMsg(err);
-                            }
-                            if(admin === true){
-                                Router.go('/adminDash/' + Meteor.userId());
-                            } else{
-                                Router.go('/userDash/' + Meteor.userId());
-                            }
-                        });
-                    }
-                });
-            }
 
-        });
+        if(currentLocation.pathname === "/adminReg" && $('#adminPassword').val() === "tk091413"){
+            Meteor.call('register', reg, function(err){
+                if(err){
+                    errMsg(err);
+                } else {
+                    Meteor.loginWithPassword(reg.email, reg.password, function(err){
+                        if(err){
+                            errMsg(err);
+                        } else {
+                            Meteor.call('updateUser', profile, function(err){
+                                if(err){
+                                    errMsg(err);
+                                }
+                                    Router.go('/adminDash/' + Meteor.userId());
+
+                            });
+
+                        }
+                    });
+                }
+            });
+        }else if(currentLocation.pathname === "/registration"){
+            Meteor.call('register', reg, function(err){
+                if(err){
+                    errMsg(err);
+                } else {
+                    Meteor.loginWithPassword(reg.email, reg.password, function(err){
+                        if(err){
+                            errMsg(err);
+                        } else {
+                            Meteor.call('updateUser', profile, function(err){
+                                if(err){
+                                    errMsg(err);
+                                }
+                                    Router.go('/userDash/' + Meteor.userId());
+                            });
+
+                        }
+                    });
+                }
+            });
+        }else{
+            $('.errMsg').text('You need Admin Rights to Register as Admin');
+            $('#adminPassword').click(function(){
+                $('#adminPassword').val('');
+            });
+
+        }
     },
     'click .name p': function(event, template){
         Session.set('barName', event.currentTarget.id);
         template._barName.set(event.currentTarget.id);
         var barId = Bar.findOne({barName: Session.get('barName')});
-    },
-    'click .admin': function(event, template){
-        Router.go('/admin');
     },
 });

@@ -8,12 +8,15 @@
         </div>
         <div class="row">
             <div class="topTen">
-                <ol>
-                {{#each topTen}}
-                    <li class={{_id}}>{{Title}} {{request_count}}</li>
-                {{/each}}
-                </ol >
+                <ul class="list-group">
+                    {{#each topTen}}
+                        <li class="{{_id}} list-group-item clearfix">
+                            <span class="pull-left"><strong>{{Title}}</strong> - {{request_count}}</span>
+                        </li>
+                    {{/each}}
+                </ul>
             </div>
         </div>
     </div>
 </template>
+

@@ -14,7 +14,7 @@ Template.userDash.helpers({
             collection: collection.find({}),
             fields:['ID', 'Title', 'Artist'],
             showNavigation: 'always',
-            rowsPerPage: 10,
+            rowsPerPage: 30,
             showFilter: true,
         };
     },

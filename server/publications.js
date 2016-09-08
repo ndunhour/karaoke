@@ -13,9 +13,6 @@ Meteor.publish('AB', function(){
 Meteor.publish('users', function(id){
     return Meteor.users.find({_id: id});
 });
-Meteor.publish('admin', function(id){
-    return Meteor.users.find({_id: id});
-});
 Meteor.publish('messages', function(){
     return Messages.find();
 });
