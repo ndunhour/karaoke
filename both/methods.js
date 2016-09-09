@@ -6,6 +6,9 @@ Meteor.methods({
     'updateUser': function(profile){
         return Meteor.users.update({_id:this.userId},{$set: {profile: profile}});
     },
+    'verifyUser': function(email){
+        return Meteor.users.find({emails: email});
+    },
     'deleteSong': function(songId){
         return Requests.remove({_id: songId});
     },

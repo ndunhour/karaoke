@@ -64,10 +64,11 @@ Router.route('signIn', {
     waitOn: function(){
         return [
             Meteor.subscribe('bar'),
+            Meteor.subscribe('users')
             ];
     },
     data: function(){
-        return {};
+        return Meteor.users.find({});
     }
 });
 Router.route('userDash', {
