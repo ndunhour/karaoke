@@ -53,24 +53,27 @@ Template.signIn.events({
             email: emailVar,
             password: passwordVar,
         };
+        console.log('signIn', signIn);
+        Meteor.call('verifyUser', emailVar, function(err, user){
+            if(err){
+                console.log(err.reason);
+            }
+            if(user.profile.admin === true){
+                Meteor.loginWithPassword(signIn.email, signIn.password, function(err, succ){
+                    if(err){
+                        $('.errMsg').text('User Profile not found').fadeIn(500).delay(2000).fadeOut(500);
+                    }else {
+                        Session.set('barName', user.profile.barName);
+                        Router.go('/adminDash/' + Meteor.userId());
+                    }
+                });
+            }else if(user.profile.admin === false){
+                $('.barDropdown').css('display', 'block');
+                $('.js-startSinging').css('display', 'block');
+                $('.js-signIn').css('display', 'none');
+            }
+        });
 
-        var findAdmin = Meteor.users.findOne({'emails.address': emailVar});
-        if(findAdmin.profile.admin === false){
-            $('.barDropdown').css('display', 'block');
-            $('.js-startSinging').css('display', 'block');
-            $('.js-signIn').css('display', 'none');
-        }
-        if(findAdmin.profile.admin === true){
-            Meteor.loginWithPassword(signIn.email, signIn.password, function(err, succ){
-                if(err){
-                    errMsg(err);
-                }else {
-                    console.log('adminDash');
-                    Session.set('barName', findAdmin.profile.barName);
-                    Router.go('/adminDash/' + Meteor.userId());
 
-                }
-            });
-        }
     }
 });

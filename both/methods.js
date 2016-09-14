@@ -7,7 +7,10 @@ Meteor.methods({
         return Meteor.users.update({_id:this.userId},{$set: {profile: profile}});
     },
     'verifyUser': function(email){
-        return Meteor.users.find({emails: email});
+        if(Meteor.isServer){
+            var user = Accounts.findUserByEmail(email);
+            return user;
+        }
     },
     'deleteSong': function(songId){
         return Requests.remove({_id: songId});
