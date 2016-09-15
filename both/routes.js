@@ -111,3 +111,9 @@ Router.route('topTen', {
         return Meteor.subscribe('requests');
     }
 });
+Router.route('updatDb', {
+    path: '/updateDb',
+    template: 'updateDb',
+    layoutTemplate: null,
+
+});
