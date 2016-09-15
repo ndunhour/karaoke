@@ -53,7 +53,6 @@ Template.signIn.events({
             email: emailVar,
             password: passwordVar,
         };
-        console.log('signIn', signIn);
         Meteor.call('verifyUser', emailVar, function(err, user){
             if(err){
                 console.log(err.reason);

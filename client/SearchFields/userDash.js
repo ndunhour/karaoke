@@ -10,6 +10,7 @@ Template.userDash.onRendered = function(){
 Template.userDash.helpers({
     settings: function(){
         var collection = nameToCollection(Session.get('barName'));
+        console.log('coll', collection);
         return {
             collection: collection.find({}),
             fields:['ID', 'Title', 'Artist'],
