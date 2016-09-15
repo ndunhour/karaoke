@@ -27,7 +27,8 @@ Template.playlist.events({
     },
     'click .js-deleteSong': function(event, template){
         event.preventDefault();
-        if(Meteor.userId() === Session.get('custId')){
+        console.log('user', Meteor.user().profile.admin);
+        if(Meteor.userId() === Session.get('custId') || Meteor.user().profile.admin === true){
             Meteor.call('deleteSong', Session.get('songId'), function(err){
                 if(err){
                     console.log(err.reason);
