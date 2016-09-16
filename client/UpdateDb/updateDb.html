@@ -1,3 +1,54 @@
 <template name="updateDb">
-    <h1>HI</h1>
+    {{> companyLogo}}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <h3>Update Song Book</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="songId" autofocus>Song Id:</label>
+                    <input type="text" class="form-control" id="ID">
+                </div>
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="Title">
+                </div>
+                <div class="form-group">
+                    <label for="artist">Artist:</label>
+                    <input type="text" class="form-control" id="Artist">
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <input class="btn btn-primary js-newSong" type="button" value="Submit">
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each songList}}
+                    <tr>
+                        <td>{{ID}}</td>
+                        <td>{{Title}}</td>
+                        <td>{{Artist}}</td>
+                        <td><input class="btn btn-primary js-editList" type="button" value="Edit"></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </template>

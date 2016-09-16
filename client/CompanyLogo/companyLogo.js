@@ -28,12 +28,12 @@ Template.companyLogo.helpers({
     },
     home: function(){
         if(Meteor.user().profile.admin === true){
-            return "/adminDash" + Meteor.userId();
+            return "/adminDash/" + Meteor.userId();
         }else {
             return "/userDash/" + Meteor.userId();
         }
     },
-    admin: function(){
+    show: function(){
         if(Meteor.user().profile.admin === true){
             return "block";
         }else {

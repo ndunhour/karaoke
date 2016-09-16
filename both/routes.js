@@ -1,6 +1,18 @@
 Router.configure({
     layoutTemplate: 'baselayout'
 });
+Router.route('companyLogo', {
+    template: 'companyLogo',
+    layoutTemplate:null,
+    waitOn: function(){
+        return [
+            Meteor.subscribe('bar')
+        ];
+    },
+    data: function(){
+        return Meteor.users.findOne({_id: this.params._id});
+    }
+});
 Router.route('adminSignIn', {
     path: '/adminSignIn',
     template: 'signIn',
@@ -11,8 +23,8 @@ Router.route('adminSignIn', {
         ];
     },
     data: function(){
-        // return Meteor.users.findOne({_id: this.params._id});
-        return {};
+        return Meteor.users.findOne({_id: this.params._id});
+        // return {};
 
     }
 });
@@ -68,7 +80,8 @@ Router.route('signIn', {
             ];
     },
     data: function(){
-        return Meteor.users.find({});
+        return Meteor.users.findOne({_id: this.params._id});
+        // return Meteor.users.find({});
     }
 });
 Router.route('userDash', {
@@ -89,10 +102,8 @@ Router.route('contactDj', {
     path: '/contactDj',
     template: 'contactDj',
     layoutTemplate:null,
-    waitOn: function(){
-        return [
-            Meteor.subscribe('requests')
-            ];
+    data: function(){
+        return Meteor.users.findOne({_id: this.params._id});
     }
 });
 Router.route('playlist', {
@@ -100,20 +111,22 @@ Router.route('playlist', {
     template: 'playlist',
     layoutTemplate:null,
     waitOn: function(){
-        return Meteor.subscribe('requests');
+        return Meteor.subscribe('requests')
     }
 });
 Router.route('topTen', {
     path: '/topTen',
     template: 'topTen',
     layoutTemplate:null,
-    waitOn: function(){
-        return Meteor.subscribe('requests');
+    data: function(){
+        return Meteor.users.findOne({_id: this.params._id});
     }
 });
 Router.route('updatDb', {
     path: '/updateDb',
     template: 'updateDb',
     layoutTemplate: null,
-
+    data: function(){
+        return Meteor.users.findOne({_id: this.params._id});
+    }
 });
