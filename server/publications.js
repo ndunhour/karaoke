@@ -16,3 +16,6 @@ Meteor.publish('users', function(){
 Meteor.publish('messages', function(){
     return Messages.find();
 });
+Meteor.publish('updateList', function(){
+    return UpdateList.find();
+});

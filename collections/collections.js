@@ -4,6 +4,7 @@ Requests = new Mongo.Collection('requests');
 HMC = new Mongo.Collection('HMC');
 AB = new Mongo.Collection('AB');
 Messages = new Mongo.Collection('messages');
+UpdateList = new Mongo.Collection('updateList');
 
 // Albums = new Mongo.Collection( 'albums' );
 

@@ -111,7 +111,7 @@ Router.route('playlist', {
     template: 'playlist',
     layoutTemplate:null,
     waitOn: function(){
-        return Meteor.subscribe('requests')
+        return Meteor.subscribe('requests');
     }
 });
 Router.route('topTen', {

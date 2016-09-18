@@ -60,4 +60,14 @@ Meteor.methods({
 
         return collection.insert(newSong);
     },
+    'addSong': function(song){
+        return UpdateList.insert(song);
+    },
+    'editNewSong': function(id, editSong){
+        return UpdateList.update({_id:id}, {$set:{
+            ID: editSong.ID,
+            Title: editSong.Title,
+            Artist: editSong.Artist
+        }});
+    }
 });
