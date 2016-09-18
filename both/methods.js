@@ -69,5 +69,20 @@ Meteor.methods({
             Title: editSong.Title,
             Artist: editSong.Artist
         }});
+    },
+    'insertNewSongs': function(barName, newSong){
+        var nameToCollection = function(barName) {
+            var root = Meteor.isClient ? window : global;
+            return root[barName];
+        };
+
+        var collection = nameToCollection(barName);
+        for(var i=0; i<newSong.length; i++){
+            collection.insert(newSong[i]);
+        }
+        return collection.find();
+    },
+    'removeList': function(){
+        return UpdateList.remove({});
     }
 });
