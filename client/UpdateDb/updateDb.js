@@ -1,4 +1,5 @@
 Template.updateDb.created = function(){
+    console.log('session', Session.get('barName'));
     Meteor.subscribe(Session.get('barName'));
     Meteor.subscribe('updateList');
 };
@@ -82,12 +83,12 @@ Template.updateDb.events({
         $('.editWindow').css({'display': 'none'});
         $('.updateMain').css({'display': 'block'});
     },
-    'click .js-submit': function(event, template){
+    'click .js-submit2': function(event, template){
         var updateList = [];
-        var bar = Session.get('barName');
         for(var i=0; i<UpdateList.find().count(); i++){
             updateList.push(UpdateList.find().fetch()[i]);
         }
+        console.log('updateList', updateList);
 
         Meteor.call('insertNewSongs', Session.get('barName'), updateList, function(err, succ){
             if(err){
@@ -96,6 +97,12 @@ Template.updateDb.events({
             Meteor.call('removeList', function(err){
                 if(err){
                     console.log(err.reason);
+                } else{
+                    if(Meteor.user().profile.admin === true){
+                        Router.go('/adminDash/' + Meteor.userId());
+                    }else {
+                        Router.go('/userDash/' + Meteor.usersId());
+                    }
                 }
             });
         });

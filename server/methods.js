@@ -16,5 +16,16 @@ Meteor.methods({
 
 
         }
-    }
+    },
+    'insertNewSongs': function(barName, updateList){
+            var nameToCollection = function(barName) {
+                var root = Meteor.isClient ? window : global;
+                return root[barName];
+            };
+            var collection = nameToCollection(barName);
+            for(var i=0; i<updateList.length; i++){
+                collection.insert(updateList[i]);
+            }
+        return collection.find({}).count();
+    },
 });
