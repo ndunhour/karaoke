@@ -42,6 +42,9 @@ Meteor.methods({
     'messages': function(message){
         return Messages.insert(message);
     },
+    'deleteMsg': function(id){
+        return Messages.remove({_id:id});
+    },
     'response': function(id, response){
         return Comments.update({_id:id}, {$push: {response: response}});
     },

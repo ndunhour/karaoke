@@ -1,16 +1,17 @@
 <template name="contactDj">
     {{> companyLogo}}
-    <div class="container-fluid">
+    <div class="container-fluid contactDj">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <h3>Contact Admin</h3>
+                <div class="deleteError"></div>
             </div>
         </div>
         <div class="row">
             <div class="contactDj">
                 <ul class="list-group">
                     {{#each messages}}
-                        <li class="list-group-item clearfix">
+                        <li class="list-group-item clearfix msg" id="{{_id}}">
                             {{#if isAdmin admin}}
                             <span class="pull-right">{{message}}: <strong>{{userName}}</strong></span>
                             {{else}}
@@ -28,6 +29,21 @@
                 <input type="text" id="message" placeholder="Message">
                 <input class="btn btn-primary js-msg" id="{{_id}}" type="button" value="Submit">
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="confirmDeleteMsg" style="display:none">
+            <ul class="list-group">
+                <li class="list-group-item clearfix"><p>Are you sure?</p></li>
+                <li class="list-group-item clearfix">
+                    <span class="pull-left">
+                        <button type="button" class="btn btn-primary btn-sm js-cancel">Cancel</button>
+                    </span>
+                    <span class="pull-right">
+                        <button type="button" class="btn btn-primary btn-sm js-deleteMsg">Yes</button>
+                    </span>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
