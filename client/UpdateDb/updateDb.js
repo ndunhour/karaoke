@@ -88,7 +88,6 @@ Template.updateDb.events({
         for(var i=0; i<UpdateList.find().count(); i++){
             updateList.push(UpdateList.find().fetch()[i]);
         }
-        console.log('updateList', updateList);
 
         Meteor.call('insertNewSongs', Session.get('barName'), updateList, function(err, succ){
             if(err){
@@ -97,14 +96,16 @@ Template.updateDb.events({
             Meteor.call('removeList', function(err){
                 if(err){
                     console.log(err.reason);
-                } else{
-                    if(Meteor.user().profile.admin === true){
-                        Router.go('/adminDash/' + Meteor.userId());
-                    }else {
-                        Router.go('/userDash/' + Meteor.usersId());
-                    }
                 }
+                Router.go('/adminDash/' + Meteor.userId());
             });
+        });
+    },
+    'click .js-deleteBtn': function(event, template){
+        Meteor.call('removeRow', event.currentTarget.id, function(err){
+            if(err){
+                console.log(err.reason);
+            }
         });
     }
 });

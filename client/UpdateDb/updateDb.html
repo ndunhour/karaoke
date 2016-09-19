@@ -38,7 +38,7 @@
                         <th>ID</th>
                         <th>Title</th>
                         <th>Artist</th>
-                        <th>Edit</th>
+                        <th>Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +48,8 @@
                         <td id={{Title}}>{{Title}}</td>
                         <td id={{Artist}}>{{Artist}}</td>
                         <td><input class="btn btn-primary js-editBtn" type="button" value="Edit" id={{ID}}></td>
+                        <td><input class="btn btn-primary js-deleteBtn" type="button" value="Delete" id={{_id}}></td>
+
                     </tr>
                     {{/each}}
                 </tbody>

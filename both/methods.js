@@ -72,5 +72,8 @@ Meteor.methods({
     },
     'removeList': function(){
         return UpdateList.remove({});
+    },
+    'removeRow': function(id){
+        return UpdateList.remove({_id:id});
     }
 });
