@@ -6,6 +6,12 @@ Meteor.methods({
     'updateUser': function(profile){
         return Meteor.users.update({_id:this.userId},{$set: {profile: profile}});
     },
+    'verifyUser': function(email){
+        if(Meteor.isServer){
+            var user = Accounts.findUserByEmail(email);
+            return user;
+        }
+    },
     'deleteSong': function(songId){
         return Requests.remove({_id: songId});
     },
@@ -54,4 +60,20 @@ Meteor.methods({
 
         return collection.insert(newSong);
     },
+    'addSong': function(song){
+        return UpdateList.insert(song);
+    },
+    'editNewSong': function(id, editSong){
+        return UpdateList.update({_id:id}, {$set:{
+            ID: editSong.ID,
+            Title: editSong.Title,
+            Artist: editSong.Artist
+        }});
+    },
+    'removeList': function(){
+        return UpdateList.remove({});
+    },
+    'removeRow': function(id){
+        return UpdateList.remove({_id:id});
+    }
 });

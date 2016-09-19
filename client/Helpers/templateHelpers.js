@@ -25,3 +25,17 @@ errMsg = function(err){
     }
     console.log(err.reason);
 };
+
+// displayTable = function(){
+//     String.prototype.embraceWith = function(tag) {
+//         return "<" + tag + ">" + this + "</" + tag + ">";
+//     };
+
+//     var tableHeader = ("ID".embraceWith("th") + "Title".embraceWith("th") + "Artist".embraceWith("th")).embraceWith("tr");
+//     var tableBody = songList.map(function(song) {
+//         return (song.ID.embraceWith("td") + song.Title.toString().embraceWith("td") + song.Artist.embraceWith("td")).embraceWith("tr")
+//     }).join("");
+
+//     var table = (tableHeader + tableBody).embraceWith("table");
+//     $(".songList").append(table);
+// }

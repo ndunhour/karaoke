@@ -1,0 +1,89 @@
+<template name="updateDb">
+    {{> companyLogo}}
+    <div class="container-fluid updateMain">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <h3>Update Song Book</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="songId" autofocus>Song Id:</label>
+                    <input type="text" class="form-control" id="ID">
+                </div>
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="Title">
+                </div>
+                <div class="form-group">
+                    <label for="artist">Artist:</label>
+                    <input type="text" class="form-control" id="Artist">
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <input class="btn btn-primary js-newSong" type="button" value="Submit">
+            </div>
+            <div class="songsAdded" style="display:none">
+                <span><p>Your List Has Been Added</p></span>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-striped js-editList">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Edit/Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each songList}}
+                    <tr class="table-row" id={{ID}}>
+                        <td id={{ID}}>{{ID}}</td>
+                        <td id={{Title}}>{{Title}}</td>
+                        <td id={{Artist}}>{{Artist}}</td>
+                        <td><input class="btn btn-primary js-editBtn" type="button" value="Edit" id={{ID}}></td>
+                        <td><input class="btn btn-primary js-deleteBtn" type="button" value="Delete" id={{_id}}></td>
+
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <input class="btn btn-primary js-submit2" type="button" value="Submit Song List">
+
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="editWindow" style="display:none">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Original</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="editId"></td>
+                        <td><input type="text" class="newID"></td>
+                    </tr>
+                    <tr>
+                        <td class="editTitle"></td>
+                        <td><input type="text" class="newTitle"></td>
+                    </tr>
+                    <tr>
+                        <td class="editArtist"></td>
+                        <td><input type="text" class="newArtist"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <input class="btn btn-primary js-newBtn" type="button" value="Submit">
+
+        </div>
+    </div>
+</template>

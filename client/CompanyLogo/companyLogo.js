@@ -27,7 +27,18 @@ Template.companyLogo.helpers({
         }
     },
     home: function(){
-        return "/userDash/" + Meteor.userId();
+        if(Meteor.user().profile.admin === true){
+            return "/adminDash/" + Meteor.userId();
+        }else {
+            return "/userDash/" + Meteor.userId();
+        }
+    },
+    show: function(){
+        if(Meteor.user().profile.admin === true){
+            return "block";
+        }else {
+            return "none";
+        }
     }
 
 });

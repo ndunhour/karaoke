@@ -10,9 +10,12 @@ Meteor.publish('HMC', function(){
 Meteor.publish('AB', function(){
     return AB.find({});
 });
-Meteor.publish('users', function(id){
-    return Meteor.users.find({_id: id});
+Meteor.publish('users', function(){
+    return Meteor.users.find({});
 });
 Meteor.publish('messages', function(){
     return Messages.find();
+});
+Meteor.publish('updateList', function(){
+    return UpdateList.find();
 });

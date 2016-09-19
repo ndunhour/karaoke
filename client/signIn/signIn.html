@@ -10,9 +10,9 @@
                 <p class="errMsg"></p>
             </div>
 
-            <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" style="text-align:center; padding-bottom: 10px">
+            <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 barDropdown" style="text-align:center; padding-bottom: 10px; display:none" required>
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" required>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                         <span class="pull-left">{{nameOfBar}}</span>
                         <span class="glyphicon glyphicon-triangle-bottom pull-right" aria-hidden="true"></span></button>
                     <div class="dropdown-menu name" aria-labelledby="dropdownMenu1">
@@ -21,10 +21,15 @@
                         {{/each}}
                     </div>
                 </div>
+                <div class="needBarName" style="display:none">
+                    <p>Select an Establishment</p>
+                </div>
             </div>
 
+
             <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" style="text-align:center;">
-                <input type="submit" value="Sign In" class='js-signIn'>
+                <input type="submit" value="Start Singing" class="js-startSinging" style="display:none">
+                <input type="submit" value="Sign In" class='js-signIn' >
                 <a href="/registration">Register</a>
             </div>
         </form>

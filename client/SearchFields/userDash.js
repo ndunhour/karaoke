@@ -58,9 +58,8 @@ Template.userDash.events({
         }
 
         // inform user request has been made
-        var modal = Requests.findOne({},{sort:{date:-1}});
         $('.request').css({'display': 'block'});
-        $('.msg').text("Your request to sing " + modal.Title + " by " + modal.Artist + " will be played shortly").css({'background': 'red'});
+        $('.msg').text("Your request to sing " + find.Title + " by " + find.Artist + " will be played shortly").css({'background': 'red'});
         $('.main').css({'display': 'none'});
     },
     'click .js-close': function(event, template){
