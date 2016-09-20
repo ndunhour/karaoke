@@ -8,6 +8,12 @@ Template.playlist.rendered = function(){
 Template.playlist.helpers({
     'playlist': function(){
         return Requests.find({barName:Session.get('barName')});
+    },
+    'admin': function(){
+        if(Meteor.user().profile.admin === true){
+            return 'block';
+        }
+        return 'none';
     }
 });
 
