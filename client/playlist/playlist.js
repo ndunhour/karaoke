@@ -7,7 +7,7 @@ Template.playlist.rendered = function(){
 
 Template.playlist.helpers({
     'playlist': function(){
-        return Requests.find();
+        return Requests.find({barName:Session.get('barName')});
     }
 });
 
@@ -41,4 +41,11 @@ Template.playlist.events({
             $('.deleteError').text('You are only allowed to delete your song').fadeIn(400).delay(1800).fadeOut(500);
         }
     },
+    'click .js-resetPlayListDb': function(event, template){
+        Meteor.call('removePlaylist', Session.get('barName'), function(err){
+            if(err){
+                console.log(err.reason);
+            }
+        });
+    }
 });

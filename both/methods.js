@@ -78,5 +78,8 @@ Meteor.methods({
     },
     'removeRow': function(id){
         return UpdateList.remove({_id:id});
+    },
+    'removePlaylist': function(barName){
+        return Requests.remove({barName:barName});
     }
 });
