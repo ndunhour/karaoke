@@ -1,5 +1,4 @@
 Template.updateDb.created = function(){
-    console.log('session', Session.get('barName'));
     Meteor.subscribe(Session.get('barName'));
     Meteor.subscribe('updateList');
 };
