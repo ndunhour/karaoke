@@ -1,10 +1,11 @@
 Template.userDash.created = function(){
     Meteor.subscribe(Session.get('barName'));
     var data = this.data; // return barId and name
+    funtimes();
 };
 
 Template.userDash.onRendered = function(){
-    $('.reactive-table-input').focus();
+
 };
 
 Template.userDash.helpers({
@@ -30,6 +31,7 @@ Template.userDash.helpers({
 Template.userDash.events({
     'click .reactive-table tbody tr': function(event, template){
         event.preventDefault();
+
         var barName = Session.get('barName');
         var requestSong = {
             Artist: this.Artist,
@@ -65,6 +67,14 @@ Template.userDash.events({
     'click .js-close': function(event, template){
         $('.request').css({'display': 'none'});
         $('.main').css({'display': 'inline'});
-    }
+    },
+    // 'click .test p': function(event, template){
+    //     function funtimes(){
+    //         // $(".test").text('omz');
+    //         setTimeout(function(){
+    //             $(".test").text('omz');
+    //         },1500);
+    //     }
+    // }
 
 });

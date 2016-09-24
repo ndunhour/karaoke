@@ -26,6 +26,13 @@ errMsg = function(err){
     console.log(err.reason);
 };
 
+funtimes = function(){
+    console.log('here');
+    setTimeout(function(){
+        $(".welcomeMsg").hide();
+    },8000);
+};
+
 // displayTable = function(){
 //     String.prototype.embraceWith = function(tag) {
 //         return "<" + tag + ">" + this + "</" + tag + ">";

@@ -1,12 +1,16 @@
 body, html{
-    background-color: gray;
-    font-size: 18px;
+    background-image: url("blueNotesBackground.jpeg");
+    background-color: #42C5ED;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .wrapper{
     background-color: pink;
 }
 .container-fluid{
-    background-color: #D4E5F1;
+    background-color: #42C5ED;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
     margin: 10px;
 }
 input{
@@ -18,7 +22,12 @@ input.error{
 }
 /*companyLogo*/
 .companyLogo{
-    background-color: red;
+    background-color: #07207A;
+    color: #07207A;
     padding: 20px;
     margin-bottom: 10px;
+}
+.companyLogo h1{
+    color: #ECECEC;
+    text-shadow: 1px 1px #38C4EF;
 }
