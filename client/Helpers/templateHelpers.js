@@ -27,7 +27,6 @@ errMsg = function(err){
 };
 
 funtimes = function(){
-    console.log('here');
     setTimeout(function(){
         $(".welcomeMsg").hide();
     },8000);
