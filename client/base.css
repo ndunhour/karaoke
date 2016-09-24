@@ -39,3 +39,9 @@ input.error{
     margin-top: 14px;
     margin-bottom: 4px;
 }
+.deleteError{
+    text-align: center;
+    font-weight: bold;
+    color: red;
+    margin-top: 10px;
+}
