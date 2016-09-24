@@ -61,7 +61,7 @@ Template.userDash.events({
 
         // inform user request has been made
         $('.request').css({'display': 'block'});
-        $('.msg').text("Your request to sing " + find.Title + " by " + find.Artist + " will be played shortly").css({'background': 'red'});
+        $('.msg').text("Your request to sing " + find.Title + " by " + find.Artist + " will be played shortly");
         $('.main').css({'display': 'none'});
     },
     'click .js-close': function(event, template){
