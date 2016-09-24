@@ -8,7 +8,8 @@ Template.topTen.rendered = function(){
 Template.topTen.helpers({
     'topTen': function(){
         var collection = nameToCollection(Session.get('barName'));
-        return collection.find({}, {sort: {request_count:-1}});
+        return collection.find({}, {sort: {request_count:-1}, limit:10});
+
     }
 
 });
