@@ -9,8 +9,8 @@ body, html{
 }
 .container-fluid{
     background-color: #42C5ED;
-    opacity: 0.8;
-    filter: alpha(opacity=80);
+    /*opacity: 0.8;
+    filter: alpha(opacity=80);*/
     margin: 10px;
 }
 input{
@@ -44,4 +44,12 @@ input.error{
     font-weight: bold;
     color: red;
     margin-top: 10px;
+}
+.contactDisclaimer{
+    text-align: center;
+}
+.hamMenu{
+    margin-top: 20px;
+    /*z-index: -1;
+    position: relative;*/
 }
