@@ -72,14 +72,19 @@ Template.registration.events({
         if(currentLocation.pathname === "/adminReg" && $('#adminPassword').val() === "tk091413"){
             Meteor.call('register', reg, function(err){
                 if(err){
+                    console.log('reg1',err.reason);
+
                     errMsg(err);
                 } else {
                     Meteor.loginWithPassword(reg.email, reg.password, function(err){
                         if(err){
+                            console.log('reg2', err.reason);
                             errMsg(err);
                         } else {
                             Meteor.call('updateUser', profile, function(err){
                                 if(err){
+                            console.log('reg3', err.reason);
+
                                     errMsg(err);
                                 }
                                     Router.go('/adminDash/' + Meteor.userId());
@@ -93,14 +98,20 @@ Template.registration.events({
         }else if(currentLocation.pathname === "/registration"){
             Meteor.call('register', reg, function(err){
                 if(err){
+                            console.log('reg4', err.reason);
+
                     errMsg(err);
                 } else {
                     Meteor.loginWithPassword(reg.email, reg.password, function(err){
                         if(err){
+                            console.log('reg5', err.reason);
+
                             errMsg(err);
                         } else {
                             Meteor.call('updateUser', profile, function(err){
                                 if(err){
+                            console.log('reg6', err.reason);
+
                                     errMsg(err);
                                 }
                                     Router.go('/userDash/' + Meteor.userId());

@@ -10,11 +10,32 @@ Template.contactDj.rendered = function(){
 Template.contactDj.helpers({
     messages: function() {
         var barName = Session.get('barName');
-        return Messages.find({barName: barName}, {$sort: -1});
+        var user = Meteor.userId();
+        if(Meteor.user().profile.admin === false){
+            return Messages.find({userId: user});
+        }else{
+            return Meteor.find({barName: barName});
+        }
     },
     isAdmin: function(admin){
-        return admin === true;
-    }
+        console.log('admin', admin);
+        if(Meteor.user().profile.admin === true){
+            return admin === true;
+        }else{
+            return admin === false;
+        }
+    },
+    showMsg: function(){
+        return Messages.find({});
+    },
+    adminMsg: function(){
+        var barName = Session.get('barName');
+        return Messages.find({barName: barName});
+    },
+    replyMsg: function(){
+        console.log(Session.get('msgId'));
+        return Messages.find({_id: Session.get('msgId')});
+    },
 });
 
 Template.contactDj.events({
@@ -47,7 +68,8 @@ Template.contactDj.events({
     'click li.msg':function(event, template){
         var id = event.currentTarget.id;
         Session.set('msgId', id);
-
+        console.log('message set', id)
+        console.log('user', Meteor.userId());
         $('.confirmDeleteMsg').css('display', 'block');
         $('.contactDj').css('display', 'none');
 
@@ -72,6 +94,9 @@ Template.contactDj.events({
     'click .js-cancel': function(event, template){
         $('.confirmDeleteMsg').css('display', 'none');
         $('.contactDj').css('display', 'block');
+    },
+    'click .reply': function(event, template){
+        console.log('session', Session.get('msgId'));
     }
 
 });

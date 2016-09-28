@@ -17,7 +17,7 @@ errMsg = function(err){
     if(err.reason == "Email already exists."){
         return $(".errMsg").text("Email already exists");
     }
-    if(err.reason == "User not found"){
+    if(err.reason || err == "User not found"){
         return $(".errMsg").text("User not found");
     }
     if(err.reason == "Need to set a username or email"){
@@ -29,19 +29,5 @@ errMsg = function(err){
 funtimes = function(){
     setTimeout(function(){
         $(".welcomeMsg").hide();
-    },8000);
+    },5000);
 };
-
-// displayTable = function(){
-//     String.prototype.embraceWith = function(tag) {
-//         return "<" + tag + ">" + this + "</" + tag + ">";
-//     };
-
-//     var tableHeader = ("ID".embraceWith("th") + "Title".embraceWith("th") + "Artist".embraceWith("th")).embraceWith("tr");
-//     var tableBody = songList.map(function(song) {
-//         return (song.ID.embraceWith("td") + song.Title.toString().embraceWith("td") + song.Artist.embraceWith("td")).embraceWith("tr")
-//     }).join("");
-
-//     var table = (tableHeader + tableBody).embraceWith("table");
-//     $(".songList").append(table);
-// }

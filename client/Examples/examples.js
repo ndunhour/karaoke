@@ -4,7 +4,7 @@ Template.hello.onCreated(function helloOnCreated() {
 });
 
 Template.hello.helpers({
-  counter() {
+  counter: function(){
     return Template.instance().counter.get();
   },
 });

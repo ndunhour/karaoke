@@ -31,6 +31,8 @@ Template.signIn.events({
         }else{
             Meteor.loginWithPassword(signIn.email, signIn.password, function(err, succ){
                 if(err){
+                    console.log('signIn1', err.reason);
+
                     errMsg(err);
                 }else {
                     Session.set('barName', template._barName.get());
@@ -53,9 +55,17 @@ Template.signIn.events({
             email: emailVar,
             password: passwordVar,
         };
+        console.log('click');
         Meteor.call('verifyUser', emailVar, function(err, user){
             if(err){
-                console.log(err.reason);
+                console.log('signIn2', err.reason);
+
+            }
+            if(user === 'User Not Found'){
+                console.log('omz', user);
+                err = user;
+                errMsg(err);
+
             }
             if(user.profile.admin === true){
                 Meteor.loginWithPassword(signIn.email, signIn.password, function(err, succ){

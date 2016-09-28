@@ -22,6 +22,15 @@
                             {{/if}}
                         </li>
                     {{/each}}
+                    <!-- {{#each adminMsg}}
+                        <li class="list-group-item clearfix msg" id="{{_id}}">
+                            {{#if isAdmin admin}}
+                            <span class="pull-right">{{message}}: <strong>{{userName}}</strong></span>
+                            {{else}}
+                            <span class="pull-left"><strong>{{userName}}</strong>:  {{message}}</span>
+                            {{/if}}
+                        </li>
+                    {{/each}} -->
                 </ul>
             </div>
         </div>
@@ -36,8 +45,31 @@
     </div>
     <div class="row">
         <div class="confirmDeleteMsg" style="display:none">
+            {{#each replyMsg}}
+                <li class="list-group-item clearfix msg" id="{{_id}}">
+                    {{#if isAdmin admin}}
+                    <span class="pull-right">{{message}}: <strong>{{userName}}</strong></span>
+                    {{else}}
+                    <span class="pull-left"><strong>{{userName}}</strong>:  {{message}}</span>
+                    {{/if}}
+                </li>
+            {{/each}}
+
+
+
+
+            <ul class="list-group reply">
+                <li class="list-group-item clearfix">
+                    <span class="pull-right"><input type="text"></span>
+                </li>
+                <li class="list-group-item clearfix">
+                    <span class="pull-left">
+                        <button type="button" class="btn btn-primary btn-sm js-reply">Reply</button>
+                    </span>
+                </li>
+            </ul>
             <ul class="list-group">
-                <li class="list-group-item clearfix"><p>Are you sure?</p></li>
+                <li class="list-group-item clearfix"><p>Delete Message?</p></li>
                 <li class="list-group-item clearfix">
                     <span class="pull-left">
                         <button type="button" class="btn btn-primary btn-sm js-cancel">Cancel</button>

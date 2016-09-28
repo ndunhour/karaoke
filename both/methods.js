@@ -9,7 +9,11 @@ Meteor.methods({
     'verifyUser': function(email){
         if(Meteor.isServer){
             var user = Accounts.findUserByEmail(email);
-            return user;
+            if(user === undefined){
+                return 'User Not Found';
+            }else{
+                return user;
+            }
         }
     },
     'deleteSong': function(songId){
