@@ -6,7 +6,7 @@ Template.hello.onCreated(function helloOnCreated() {
 Template.hello.helpers({
   counter: function(){
     return Template.instance().counter.get();
-  },
+  }
 });
 
 Template.hello.events({

@@ -1,5 +1,6 @@
 Template.contactDj.created = function(){
     Meteor.subscribe('messages');
+    // Meteor.subscribe('Usermessages');
 
 };
 
@@ -9,13 +10,15 @@ Template.contactDj.rendered = function(){
 
 Template.contactDj.helpers({
     messages: function() {
-        var barName = Session.get('barName');
-        var user = Meteor.userId();
-        if(Meteor.user().profile.admin === false){
-            return Messages.find({userId: user});
-        }else{
-            return Meteor.find({barName: barName});
-        }
+        var user = Messages.find({userId: Meteor.userId()});
+        // return messages.messages;
+        // var barName = Session.get('barName');
+        // var user = Meteor.userId();
+        // if(Meteor.user().profile.admin === false){
+        //     return Messages.find({userId: user});
+        // }else{
+        //     return Meteor.find({barName: barName});
+        // }
     },
     isAdmin: function(admin){
         console.log('admin', admin);
@@ -28,14 +31,14 @@ Template.contactDj.helpers({
     showMsg: function(){
         return Messages.find({});
     },
-    adminMsg: function(){
-        var barName = Session.get('barName');
-        return Messages.find({barName: barName});
-    },
-    replyMsg: function(){
-        console.log(Session.get('msgId'));
-        return Messages.find({_id: Session.get('msgId')});
-    },
+    // adminMsg: function(){
+    //     var barName = Session.get('barName');
+    //     return Messages.find({barName: barName});
+    // },
+    // replyMsg: function(){
+    //     console.log(Session.get('msgId'));
+    //     return Messages.find({_id: Session.get('msgId')});
+    // },
 });
 
 Template.contactDj.events({
@@ -46,29 +49,50 @@ Template.contactDj.events({
         }else{
             name = 'Anonymous';
         }
-        var message = $('#message').val();
+        var msg = {
+            fromMsg: $('#message').val(),
+            from: Meteor.userId()
+        };
+
         var date = new Date();
 
         var messages = {
-            message: message,
             userName: name,
             userId: Meteor.userId(),
             date: time(date),
             barName: Session.get('barName'),
             admin: Meteor.user().profile.admin
         };
-        Meteor.call('messages', messages, function(err){
-            if(err){
-                console.log(err.reason);
-            }
-        });
+        console.log('msg', messages);
+
+
+        // if message count for user = 0
+        // create a new message
+        // else insert message into array
+
+        console.log('count', Messages.find({userId: Meteor.userId()}).count());
+        if(Messages.find({userId: Meteor.userId()}).count() === 0){
+            Meteor.call('messages', messages, function(err, succ){
+                if(err){
+                    console.log(err.reason);
+                }
+                var msgId = succ;
+                console.log(msgId);
+                Meteor.call('msg', msgId, msg, function(err){
+                    if(err){
+                        console.log(err.reason);
+                    }
+                });
+            });
+
+        }
 
         $('#message').val("");
     },
     'click li.msg':function(event, template){
         var id = event.currentTarget.id;
         Session.set('msgId', id);
-        console.log('message set', id)
+        console.log('message set', id);
         console.log('user', Meteor.userId());
         $('.confirmDeleteMsg').css('display', 'block');
         $('.contactDj').css('display', 'none');

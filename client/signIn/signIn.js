@@ -55,7 +55,6 @@ Template.signIn.events({
             email: emailVar,
             password: passwordVar,
         };
-        console.log('click');
         Meteor.call('verifyUser', emailVar, function(err, user){
             if(err){
                 console.log('signIn2', err.reason);

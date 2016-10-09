@@ -102,6 +102,9 @@ Router.route('contactDj', {
     path: '/contactDj',
     template: 'contactDj',
     layoutTemplate:null,
+    waitOn: function(){
+        return Meteor.subscribe('users');
+    },
     data: function(){
         return Meteor.users.findOne({_id: this.params._id});
     }

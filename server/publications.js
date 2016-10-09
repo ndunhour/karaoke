@@ -16,6 +16,10 @@ Meteor.publish('users', function(){
 Meteor.publish('messages', function(){
     return Messages.find();
 });
+// Meteor.publish('UserMessages', function(){
+//     console.log('thisPub', this._id);
+//     return Messages.findOne();
+// });
 Meteor.publish('updateList', function(){
     return UpdateList.find();
 });
