@@ -9,6 +9,9 @@ Template.companyLogo.helpers({
         var cust = Cust.findOne({},{sort: {date:-1}});
         return Cust.findOne({},{sort: {date:-1}});
     },
+    user: function(){
+        return Meteor.user().profile.userName;
+    },
     nameOfBar: function(){
         return Session.get('barName');
     },

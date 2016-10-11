@@ -23,9 +23,6 @@ Template.userDash.helpers({
         var collection = nameToCollection(Session.get('barName'));
         return collection.find({});
     },
-    nameOfBar: function(){
-        return Session.get('barName');
-    },
 });
 
 Template.userDash.events({

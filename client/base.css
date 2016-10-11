@@ -4,6 +4,9 @@ body, html{
     background-repeat: no-repeat;
     background-size: cover;
 }
+thead{
+    font-weight: bold;
+}
 .wrapper{
     background-color: pink;
 }
@@ -55,4 +58,7 @@ input.error{
 }
 .reply span{
     width: 100%;
+}
+.userName{
+    padding-right: 10px;
 }
