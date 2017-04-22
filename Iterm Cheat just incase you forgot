@@ -1,0 +1,16 @@
+Iterm Cheat just incase you forgot
+
+
+iterm quickies
+    cd
+    ls
+
+    subl .
+
+Run meteor - meteor
+Kill meteor - control + c
+
+
+Get in to DB - meteor mongo
+Kill DB - control + c
+
