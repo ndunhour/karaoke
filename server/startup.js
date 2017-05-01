@@ -35,9 +35,6 @@ Meteor.autorun(function() {
     //     });
     // }
 
-
-
-
     if (Meteor.isServer) {
         Meteor.startup(function () {
             if (HMC.find().count() === 0) {

@@ -23,9 +23,17 @@ Template.userDash.helpers({
         var collection = nameToCollection(Session.get('barName'));
         return collection.find({});
     },
+    songList: function(){
+        return Session.get('songList');
+    },
+
 });
 
 Template.userDash.events({
+    'keyup .searchInput': function(event, template){
+        console.log(Session.get('countryList'));
+    },
+
     'click .reactive-table tbody tr': function(event, template){
         event.preventDefault();
 
@@ -75,3 +83,6 @@ Template.userDash.events({
     // }
 
 });
+
+// fetch data from file
+

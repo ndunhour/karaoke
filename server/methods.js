@@ -28,4 +28,6 @@ Meteor.methods({
             }
         return collection.find({}).count();
     },
+
+
 });
