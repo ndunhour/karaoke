@@ -89,7 +89,4 @@ Meteor.methods({
     'removePlaylist': function(barName){
         return Requests.remove({barName:barName});
     },
-    'readJson': function(){
-        return JSON.parse(Assets.getText('test.json'));
-    }
 });

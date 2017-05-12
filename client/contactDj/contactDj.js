@@ -21,7 +21,6 @@ Template.contactDj.helpers({
         // }
     },
     isAdmin: function(admin){
-        console.log('admin', admin);
         if(Meteor.user().profile.admin === true){
             return admin === true;
         }else{
@@ -63,21 +62,18 @@ Template.contactDj.events({
             barName: Session.get('barName'),
             admin: Meteor.user().profile.admin
         };
-        console.log('msg', messages);
 
 
         // if message count for user = 0
         // create a new message
         // else insert message into array
 
-        console.log('count', Messages.find({userId: Meteor.userId()}).count());
         if(Messages.find({userId: Meteor.userId()}).count() === 0){
             Meteor.call('messages', messages, function(err, succ){
                 if(err){
                     console.log(err.reason);
                 }
                 var msgId = succ;
-                console.log(msgId);
                 Meteor.call('msg', msgId, msg, function(err){
                     if(err){
                         console.log(err.reason);
@@ -92,8 +88,6 @@ Template.contactDj.events({
     'click li.msg':function(event, template){
         var id = event.currentTarget.id;
         Session.set('msgId', id);
-        console.log('message set', id);
-        console.log('user', Meteor.userId());
         $('.confirmDeleteMsg').css('display', 'block');
         $('.contactDj').css('display', 'none');
 

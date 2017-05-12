@@ -30,8 +30,11 @@ Template.userDash.helpers({
 });
 
 Template.userDash.events({
+    // testing js example
     'keyup .searchInput': function(event, template){
-        console.log(Session.get('countryList'));
+        Meteor.call('getCountryList', function(err, succ){
+
+        });
     },
 
     'click .reactive-table tbody tr': function(event, template){

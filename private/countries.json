@@ -1,6 +1,24 @@
 
 [
-{ "name": "Germany", "code": "DE" },
-{ "name": "France", "code": "FR" },
-{ "name": "United States", "code": "US" }
+{
+   "ID": 50052,
+   "Title": "Hello",
+   "Artist": "Adele",
+   "Year": 2015,
+   "Styles": "Pop"
+ },
+ {
+   "ID": 48052,
+   "Title": "Uptown Funk",
+   "Artist": "Bruno Mars",
+   "Year": 2014,
+   "Styles": "Funk,Pop,Electro"
+ },
+ {
+   "ID": 50022,
+   "Title": "On écrit sur les murs",
+   "Artist": "Kids United",
+   "Year": 2015,
+   "Styles": "French pop,Kids"
+ }
 ]
